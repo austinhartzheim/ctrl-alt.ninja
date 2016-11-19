@@ -6,8 +6,8 @@
 function Editor(elm) {
     this.elm = elm;
     
-    this.cursor_pos_x = 0;
-    this.cursor_pos_y = 0;
+    this.cx = 0;
+    this.cy = 0;
 
     this.data_buffer = ["hello world", "how are you?"];
 }
@@ -15,13 +15,13 @@ function Editor(elm) {
 Editor.prototype.render = function() {
     this.elm.empty();
     for (var i = 0; i < this.data_buffer.length; i++) {
-        if (this.cursor_pos_y == i) {
-            if (this.cursor_pos_x == this.get_line_length(i)) {
+        if (this.cy == i) {
+            if (this.cx == this.get_line_length(i)) {
                 this.elm.append('<p>' + this.data_buffer[i] + '<u>&nbsp;</u></p>');
             } else {
-                this.elm.append('<p>' + this.data_buffer[i].slice(0, this.cursor_pos_x) +
-                                '<u>' + this.data_buffer[i].slice(this.cursor_pos_x, this.cursor_pos_x + 1) + '</u>' +
-                                this.data_buffer[i].slice(this.cursor_pos_x + 1));
+                this.elm.append('<p>' + this.data_buffer[i].slice(0, this.cx) +
+                                '<u>' + this.data_buffer[i].slice(this.cx, this.cx + 1) + '</u>' +
+                                this.data_buffer[i].slice(this.cx + 1));
             }
         } else {
             this.elm.append("<p>" + this.data_buffer[i] + "</p>");
@@ -31,8 +31,8 @@ Editor.prototype.render = function() {
 
 Editor.prototype.set_data_buffer = function(data) {
     this.data_buffer = data;
-    this.cursor_pos_y = Math.min(this.data_buffer.length, this.cursor_pos_y);
-    this.cursor_pos_x = Math.min(this.data_buffer[this.cursor_pos_y].length, this.cursor_pos_x);
+    this.cy = Math.min(this.data_buffer.length, this.cy);
+    this.cx = Math.min(this.data_buffer[this.cy].length, this.cx);
 };
 
 Editor.prototype.set_cursor = function(x, y) {
@@ -43,8 +43,8 @@ Editor.prototype.set_cursor = function(x, y) {
         throw "Cannot set cursor to a column that does not exist on this line";
     }
 
-    this.cursor_pos_x = x;
-    this.cursor_pos_y = y;
+    this.cx = x;
+    this.cy = y;
 };
 
 /*
@@ -53,32 +53,32 @@ Editor.prototype.set_cursor = function(x, y) {
  * yd: the amount to move the cursor along the y-axis
  */
 Editor.prototype.move_cursor = function(xd, yd) {
-    this.cursor_pos_x += xd;
-    if (this.cursor_pos_x > this.get_line_length(this.cursor_pos_y)) {
+    this.cx += xd;
+    if (this.cx > this.get_line_length(this.cy)) {
         // If we are at the end of the file, don't advance the cursor
-        if (this.cursor_pos_y == this.get_line_count() - 1) {
-            this.cursor_pos_x = this.get_line_length(this.cursor_pos_y);
+        if (this.cy == this.get_line_count() - 1) {
+            this.cx = this.get_line_length(this.cy);
         } else {
-            this.cursor_pos_x = 0;
-            this.cursor_pos_y++;
+            this.cx = 0;
+            this.cy++;
         }
-    } else if (this.cursor_pos_x < 0) {
+    } else if (this.cx < 0) {
         // If we are at the start of the file, don't change lines
-        if (this.cursor_pos_y == 0) {
-            this.cursor_pos_x = 0;
+        if (this.cy == 0) {
+            this.cx = 0;
         } else {
-            this.cursor_pos_y--;
-            this.cursor_pos_x = this.get_line_length(this.cursor_pos_y);
+            this.cy--;
+            this.cx = this.get_line_length(this.cy);
         }
     }
 
-    this.cursor_pos_y += yd;
-    this.cursor_pos_y = Math.max(0, Math.min(this.get_line_count() - 1, this.cursor_pos_y));
+    this.cy += yd;
+    this.cy = Math.max(0, Math.min(this.get_line_count() - 1, this.cy));
 
     /*
-    this.cursor_pos_x = Math.min(Math.max(0, this.cursor_pos_x + xd),
-                                 this.data_buffer[this.cursor_pos_y].length);
-    this.cursor_pos_y = Math.min(Math.max(0, this.cursor_pos_y + yd),
+    this.cx = Math.min(Math.max(0, this.cx + xd),
+                                 this.data_buffer[this.cy].length);
+    this.cy = Math.min(Math.max(0, this.cy + yd),
                                  this.get_line_count() - 1);
      */
 };
@@ -87,14 +87,14 @@ Editor.prototype.move_cursor = function(xd, yd) {
  * Move the cursor to the end of the line.
  */
 Editor.prototype.move_cursor_end = function() {
-    this.cursor_pos_x = this.get_line_length(this.cursor_pos_y);
+    this.cx = this.get_line_length(this.cy);
 };
 
 /*
  * Move the cursor to the start of the line.
  */
 Editor.prototype.move_cursor_home = function() {
-    this.cursor_pos_x = 0;
+    this.cx = 0;
 };
 
 /*
@@ -107,8 +107,8 @@ Editor.prototype.type_character = function(c) {
         return;
     }
 
-    this.data_buffer[this.cursor_pos_y] = utils.string_insert(
-        this.data_buffer[this.cursor_pos_y], this.cursor_pos_x, c
+    this.data_buffer[this.cy] = utils.string_insert(
+        this.data_buffer[this.cy], this.cx, c
     );
     this.move_cursor(1, 0);
 };
@@ -117,14 +117,14 @@ Editor.prototype.type_character = function(c) {
  * Insert a newline at cursor position.
  */
 Editor.prototype.type_newline = function() {
-    var pre_cursor = this.data_buffer[this.cursor_pos_y].slice(0, this.cursor_pos_x);
-    var post_cursor = this.data_buffer[this.cursor_pos_y].slice(this.cursor_pos_x);
-    this.data_buffer[this.cursor_pos_y] = pre_cursor;
-    this.data_buffer.slice(this.cursor_pos_y + 1, 0, post_cursor);
+    var pre_cursor = this.data_buffer[this.cy].slice(0, this.cx);
+    var post_cursor = this.data_buffer[this.cy].slice(this.cx);
+    this.data_buffer[this.cy] = pre_cursor;
+    this.data_buffer.slice(this.cy + 1, 0, post_cursor);
     
     // Move cursor to the start of the next line
-    this.cursor_pos_x = 0;
-    this.cursor_pos_y++;
+    this.cx = 0;
+    this.cy++;
 };
 
 /*
@@ -132,7 +132,7 @@ Editor.prototype.type_newline = function() {
  */
 Editor.prototype.kill_line = function() {
 
-    this.data_buffer[this.cursor_pos_y] = this.data_buffer[this.cursor_pos_y].slice(0, this.cursor_pos_x);
+    this.data_buffer[this.cy] = this.data_buffer[this.cy].slice(0, this.cx);
 
 };
 
@@ -141,22 +141,22 @@ Editor.prototype.kill_line = function() {
  * cursor position.
  */
 Editor.prototype.backspace = function() {
-    if (this.cursor_pos_x == 0) {
-        if (this.cursor_pos_y == 0) {
+    if (this.cx == 0) {
+        if (this.cy == 0) {
             // Nothing to do; backspace at start of file
             return;
         }
         // TODO: handle line merge
-        //var post_cursor = this.data_buffer[this.cursor_pos_y].slice(this.cursor_pos_x);
+        //var post_cursor = this.data_buffer[this.cy].slice(this.cx);
         //console.log(post_cursor);
         return;
     }
 
-    this.data_buffer[this.cursor_pos_y] = utils.string_delete_char(
-        this.data_buffer[this.cursor_pos_y], this.cursor_pos_x - 1
+    this.data_buffer[this.cy] = utils.string_delete_char(
+        this.data_buffer[this.cy], this.cx - 1
     );
 
-    this.cursor_pos_x --;
+    this.cx --;
 };
 
 Editor.prototype.get_line_count = function() {
@@ -180,11 +180,11 @@ Editor.prototype.get_line = function(line) {
 };
 
 Editor.prototype.get_cursor_x = function() {
-    return this.cursor_pos_x;
+    return this.cx;
 };
 
 Editor.prototype.get_cursor_y = function() {
-    return this.cursor_pos_y;
+    return this.cy;
 };
 
 Editor.prototype.equals = function(editor) {
