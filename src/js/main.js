@@ -1,7 +1,11 @@
 function Game() {
-
+    this.editor = new Editor($('#text-editor'));
+    this.keyboard_layout = new KeyboardLayout(this.editor);
 }
 
+$(document).ready(function() {
+    var game = new Game();
+});
 
 /*
  * Manages a visual editor display in the page.
