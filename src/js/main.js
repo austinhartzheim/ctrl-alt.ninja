@@ -1,7 +1,5 @@
 function Game() {
-    this.editor = new Editor($('#text-editor'));
-    this.keyboard_layout = new KeyboardLayout(this.editor);
-    this.editor.render();
+    this.level = new Level1();
 }
 
 /*
@@ -123,13 +121,33 @@ Editor.prototype.get_line_count = function() {
 
 Editor.prototype.get_line_length = function(line) {
     if (line < 0 || line >= this.get_line_count()) {
-        throw "Cannot access line beyond end of buffer";
+        throw "Cannot access line beyond buffer bounds";
     }
 
     return this.data_buffer[line].length;
 };
 
+Editor.prototype.get_line = function(line) {
+    if (line < 0 || line >= this.get_line_count()) {
+        throw "Cannot access line beyond buffer bounds";
+    }
+    
+    return this.data_buffer[line];
+};
 
+Editor.prototype.equals = function(editor) {
+    if (this.get_line_count() != editor.get_line_count()) {
+        return false;
+    }
+
+    for (var i = 0; i < this.get_line_count(); i++) {
+        if (this.get_line(i) != editor.get_line(i)) {
+            return false;
+        }
+    }
+
+    return true;
+};
 
 
 function KeyboardLayout(editor) {
