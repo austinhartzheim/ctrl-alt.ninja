@@ -24,6 +24,7 @@ body {
 
 .screen .container > * {
     flex: 0 1 auto;
+    padding: 15vh 0 15vh 0;
 }
 
 
