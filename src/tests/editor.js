@@ -23,6 +23,15 @@ describe('test Editor', function() {
         expect(editor.get_line_count()).toBe(3);
     });
 
+    it('set cursor - simple case, success', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['hello', 'there', 'world']);
+
+        editor.set_cursor(2, 2);
+        expect(editor.cursor_pos_x).toBe(2);
+        expect(editor.cursor_pos_y).toBe(2);
+    });
+
     it('cursor complex move pattern', function() {
         var editor = new Editor(null);
 

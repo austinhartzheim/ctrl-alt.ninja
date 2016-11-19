@@ -31,7 +31,17 @@ function Editor(elm) {
 Editor.prototype.render = function() {
     this.elm.empty();
     for (var i = 0; i < this.data_buffer.length; i++) {
-        this.elm.append("<p>" + this.data_buffer[i] + "</p>");
+        if (this.cursor_pos_y == i) {
+            if (this.cursor_pos_x == this.get_line_length(i)) {
+                this.elm.append('<p>' + this.data_buffer[i] + '<u>&nbsp;</u></p>');
+            } else {
+                this.elm.append('<p>' + this.data_buffer[i].slice(0, this.cursor_pos_x) +
+                                '<u>' + this.data_buffer[i].slice(this.cursor_pos_x, this.cursor_pos_x + 1) + '</u>' +
+                                this.data_buffer[i].slice(this.cursor_pos_x + 1));
+            }
+        } else {
+            this.elm.append("<p>" + this.data_buffer[i] + "</p>");
+        }
     }
 };
 
@@ -39,6 +49,18 @@ Editor.prototype.set_data_buffer = function(data) {
     this.data_buffer = data;
     this.cursor_pos_y = Math.min(this.data_buffer.length, this.cursor_pos_y);
     this.cursor_pos_x = Math.min(this.data_buffer[this.cursor_pos_y].length, this.cursor_pos_x);
+};
+
+Editor.prototype.set_cursor = function(x, y) {
+    if (y < 0 || y > this.get_line_count()) {
+        throw "Cannot set cursor to a line that does not exist";
+    }
+    if (x < 0 || x > this.get_line_length(y)) {
+        throw "Cannot set cursor to a column that does not exist on this line";
+    }
+
+    this.cursor_pos_x = x;
+    this.cursor_pos_y = y;
 };
 
 /*
@@ -105,10 +127,10 @@ Editor.prototype.type_character = function(c) {
  * Insert a newline at cursor position.
  */
 Editor.prototype.type_newline = function() {
-    var pre_cursor = this.data_buffer[this.cursor_pos_y].splice(0, this.cursor_pos_x);
-    var post_cursor = this.data_buffer[this.cursor_pos_y].splice(this.cursor_pos_x);
+    var pre_cursor = this.data_buffer[this.cursor_pos_y].slice(0, this.cursor_pos_x);
+    var post_cursor = this.data_buffer[this.cursor_pos_y].slice(this.cursor_pos_x);
     this.data_buffer[this.cursor_pos_y] = pre_cursor;
-    this.data_buffer.splice(this.cursor_pos_y + 1, 0, post_cursor);
+    this.data_buffer.slice(this.cursor_pos_y + 1, 0, post_cursor);
     
     // Move cursor to the start of the next line
     this.cursor_pos_x = 0;
@@ -135,7 +157,7 @@ Editor.prototype.backspace = function() {
             return;
         }
         // TODO: handle line merge
-        //var post_cursor = this.data_buffer[this.cursor_pos_y].splice(this.cursor_pos_x);
+        //var post_cursor = this.data_buffer[this.cursor_pos_y].slice(this.cursor_pos_x);
         //console.log(post_cursor);
         return;
     }
@@ -167,6 +189,14 @@ Editor.prototype.get_line = function(line) {
     return this.data_buffer[line];
 };
 
+Editor.prototype.get_cursor_x = function() {
+    return this.cursor_pos_x;
+};
+
+Editor.prototype.get_cursor_y = function() {
+    return this.cursor_pos_y;
+};
+
 Editor.prototype.equals = function(editor) {
     if (this.get_line_count() != editor.get_line_count()) {
         return false;
@@ -186,6 +216,10 @@ function KeyboardLayout(editor) {
     this.editor = editor;
     $('html').keypress(this, this.keypress);
 }
+
+KeyboardLayout.prototype.destruct = function() {
+    $('html').off('keypress', handler=this.keypress);
+};
 
 KeyboardLayout.prototype.keypress = function(event) {
     var self = event.data;
