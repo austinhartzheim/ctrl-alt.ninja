@@ -71,3 +71,19 @@ Editor.prototype.type_newline = function() {
     this.cursor_pos_x = 0;
     this.cursor_pos_y++;
 };
+
+
+
+
+function KeyboardLayout(editor) {
+    this.editor = editor;
+    $('html').keypress(this.keypress);
+}
+
+KeyboardLayout.prototype.keypress = function(event) {
+    event.preventDefault();
+    console.log(event);
+
+    this.editor.type_character(event.originalEvent.code);
+    this.editor.render();
+};
