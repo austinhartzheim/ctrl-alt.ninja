@@ -1,24 +1,24 @@
 {
-	"name":"project",
-	"version":"1.0.0",
-	"description":"",
-	"main":"index.js",
-	"scripts":{
-		"test": "echo \"error\" && exit 1"
-	},
-	"author":"",
-	"license":"ISC",
-	"devDependencies":{
-		  "gulp":"^3.9.0",
-		  "gulp-concat":"*",
-    	"browser-sync": "*",
-      "jshint": "*",
-		  "gulp-jshint": "*",
-    	"gulp-htmlmin": "*",
-    	"yargs": "*",
-		"gulp-if": "*"
-	},
-  "scripts": {
-    "test": "mocha"
-  }
+    "name":"project",
+    "version":"1.0.0",
+    "description":"",
+    "main":"index.js",
+    "scripts":{
+        "test": "echo \"error\" && exit 1"
+    },
+    "author":"",
+    "license":"ISC",
+    "devDependencies":{
+        "gulp":"^3.9.0",
+        "gulp-concat":"*",
+        "browser-sync": "*",
+        "jshint": "*",
+        "gulp-jshint": "*",
+        "gulp-htmlmin": "*",
+        "yargs": "*",
+        "gulp-if": "*"
+    },
+    "scripts": {
+        "test": "mocha"
+    }
 }
