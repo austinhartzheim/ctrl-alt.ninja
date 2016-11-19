@@ -3,8 +3,9 @@
  * Exposes an interface to allow KeyboardLayouts to interact with the editor.
  * elm: the element containing the editor interface
  */
-function Editor(elm) {
+function Editor(elm, display_cursor) {
     this.elm = elm;
+    this.display_cursor = display_cursor;
     
     this.cx = 0;
     this.cy = 0;
@@ -15,12 +16,11 @@ function Editor(elm) {
 Editor.prototype.render = function() {
     this.elm.empty();
     for (var i = 0; i < this.data_buffer.length; i++) {
-        if (this.cy == i) {
+        if (this.display_cursor && this.cy == i) {
             var pre_cursor = this.data_buffer[i].slice(0, this.cx);
             var at_cursor = this.data_buffer[i].slice(this.cx, this.cx + 1);
             var post_cursor = this.data_buffer[i].slice(this.cx + 1);
 
-            console.log(pre_cursor, 8, at_cursor, 8, post_cursor);
             if (at_cursor == ' ' || at_cursor == '') {
                 at_cursor = '&nbsp;';
             }

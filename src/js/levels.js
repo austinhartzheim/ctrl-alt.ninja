@@ -56,8 +56,8 @@ Level1.prototype.set_up_level = function() {
     }
     
     // Create editors
-    this.display = new Editor($('#text-display'));
-    this.editor = new Editor($('#text-editor'));
+    this.display = new Editor($('#text-display'), false);
+    this.editor = new Editor($('#text-editor'), true);
 
     // Initialize editor states
     this.display.set_data_buffer(
