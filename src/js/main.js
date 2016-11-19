@@ -32,9 +32,13 @@ Editor.prototype.render = function() {
     this.elm.empty();
     for (var i = 0; i < this.data_buffer.length; i++) {
         if (this.cursor_pos_y == i) {
-            this.elm.append('<p>' + this.data_buffer[i].slice(0, this.cursor_pos_x) +
-                            '<u>' + this.data_buffer[i].slice(this.cursor_pos_x, this.cursor_pos_x + 1) + '</u>' +
-                            this.data_buffer[i].slice(this.cursor_pos_x + 1));
+            if (this.cursor_pos_x == this.get_line_length(i)) {
+                this.elm.append('<p>' + this.data_buffer[i] + '<u>&nbsp;</u></p>');
+            } else {
+                this.elm.append('<p>' + this.data_buffer[i].slice(0, this.cursor_pos_x) +
+                                '<u>' + this.data_buffer[i].slice(this.cursor_pos_x, this.cursor_pos_x + 1) + '</u>' +
+                                this.data_buffer[i].slice(this.cursor_pos_x + 1));
+            }
         } else {
             this.elm.append("<p>" + this.data_buffer[i] + "</p>");
         }
