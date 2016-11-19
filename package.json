@@ -16,5 +16,8 @@
     	"gulp-htmlmin": "*",
     	"yargs": "*",
 		"gulp-if": "*"
-	}
+	},
+  "scripts": {
+    "test": "mocha"
+  }
 }
