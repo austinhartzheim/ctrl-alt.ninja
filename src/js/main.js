@@ -41,6 +41,18 @@ Editor.prototype.set_data_buffer = function(data) {
     this.cursor_pos_x = Math.min(this.data_buffer[this.cursor_pos_y].length, this.cursor_pos_x);
 };
 
+Editor.prototype.set_cursor = function(x, y) {
+    if (y < 0 || y > this.get_line_count()) {
+        throw "Cannot set cursor to a line that does not exist";
+    }
+    if (x < 0 || x > this.get_line_length(y)) {
+        throw "Cannot set cursor to a column that does not exist on this line";
+    }
+
+    this.cursor_pos_x = x;
+    this.cursor_pos_y = y;
+};
+
 /*
  * Shift the current position of the cursor.
  * xd: the amount to move the cursor along the x-axis
