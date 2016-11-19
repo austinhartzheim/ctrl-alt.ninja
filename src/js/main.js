@@ -71,9 +71,15 @@ Editor.prototype.set_cursor = function(x, y) {
 Editor.prototype.move_cursor = function(xd, yd) {
     this.cursor_pos_x += xd;
     if (this.cursor_pos_x > this.get_line_length(this.cursor_pos_y)) {
-        this.cursor_pos_x = 0;
-        this.cursor_pos_y++;
+        // If we are at the end of the file, don't advance the cursor
+        if (this.cursor_pos_y == this.get_line_count() - 1) {
+            this.cursor_pos_x = this.get_line_length(this.cursor_pos_y);
+        } else {
+            this.cursor_pos_x = 0;
+            this.cursor_pos_y++;
+        }
     } else if (this.cursor_pos_x < 0) {
+        // If we are at the start of the file, don't change lines
         if (this.cursor_pos_y == 0) {
             this.cursor_pos_x = 0;
         } else {
