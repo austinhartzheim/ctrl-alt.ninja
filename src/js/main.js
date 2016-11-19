@@ -3,10 +3,6 @@ function Game() {
     this.keyboard_layout = new KeyboardLayout(this.editor);
 }
 
-$(document).ready(function() {
-    var game = new Game();
-});
-
 /*
  * Manages a visual editor display in the page.
  * Exposes an interface to allow KeyboardLayouts to interact with the editor.
@@ -45,8 +41,12 @@ Editor.prototype.move_cursor = function(xd, yd) {
         this.cursor_pos_x = 0;
         this.cursor_pos_y++;
     } else if (this.cursor_pos_x < 0) {
-        this.cursor_pos_y--;
-        this.cursor_pos_x = this.get_line_length(this.cursor_pos_y);
+        if (this.cursor_pos_y == 0) {
+            this.cursor_pos_x = 0;
+        } else {
+            this.cursor_pos_y--;
+            this.cursor_pos_x = this.get_line_length(this.cursor_pos_y);
+        }
     }
 
     this.cursor_pos_y += yd;
