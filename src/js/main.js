@@ -89,7 +89,7 @@ Editor.prototype.move_cursor = function(xd, yd) {
     }
 
     this.cursor_pos_y += yd;
-    this.cursor_pos_y = Math.max(0, Math.min(this.get_line_count(), this.cursor_pos_y));
+    this.cursor_pos_y = Math.max(0, Math.min(this.get_line_count() - 1, this.cursor_pos_y));
 
     /*
     this.cursor_pos_x = Math.min(Math.max(0, this.cursor_pos_x + xd),
