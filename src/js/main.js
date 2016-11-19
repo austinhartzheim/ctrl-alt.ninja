@@ -170,6 +170,14 @@ Editor.prototype.get_line = function(line) {
     return this.data_buffer[line];
 };
 
+Editor.prototype.get_cursor_x = function() {
+    return this.cursor_pos_x;
+};
+
+Editor.prototype.get_cursor_y = function() {
+    return this.cursor_pos_y;
+};
+
 Editor.prototype.equals = function(editor) {
     if (this.get_line_count() != editor.get_line_count()) {
         return false;
