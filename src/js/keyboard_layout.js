@@ -32,7 +32,9 @@ KeyboardLayout.prototype.keypress = function(event) {
 
         // Detect ASCII characters
         if (event.originalEvent.charCode > 0) {
-            self.editor.type_character(String.fromCharCode(event.originalEvent.charCode));
+            self.editor.type_character(
+                String.fromCharCode(event.originalEvent.charCode)
+            );
             self.editor.render();
             return;  
         }

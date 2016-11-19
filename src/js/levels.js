@@ -60,8 +60,12 @@ Level1.prototype.set_up_level = function() {
     this.editor = new Editor($('#text-editor'));
 
     // Initialize editor states
-    this.display.set_data_buffer(level_data[this.name][this.progress]['match']);
-    this.editor.set_data_buffer(level_data[this.name][this.progress]['start']);
+    this.display.set_data_buffer(
+        level_data[this.name][this.progress]['match']
+    );
+    this.editor.set_data_buffer(
+        level_data[this.name][this.progress]['start']
+    );
     this.editor.set_cursor(pos.x, pos.y);
     this.display.render();
     this.editor.render();
