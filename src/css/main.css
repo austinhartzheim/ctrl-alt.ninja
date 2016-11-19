@@ -30,3 +30,9 @@ body {
 .screen-menu {
     background: #140424;
 }
+
+.editor {
+    text-align: left;
+    font-family: monospace;
+    font-size: 14pt
+}
