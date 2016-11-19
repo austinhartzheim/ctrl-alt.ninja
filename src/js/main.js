@@ -24,16 +24,36 @@ Editor.prototype.render = function() {
     }
 };
 
+Editor.prototype.set_data_buffer = function(data) {
+    this.data_buffer = data;
+    this.cursor_pos_y = Math.min(this.data_buffer.length, this.cursor_pos_y);
+    this.cursor_pos_x = Math.min(this.data_buffer[this.cursor_pos_y].length, this.cursor_pos_x);
+};
+
 /*
- * Shift the current positiono of the cursor.
+ * Shift the current position of the cursor.
  * xd: the amount to move the cursor along the x-axis
  * yd: the amount to move the cursor along the y-axis
  */
 Editor.prototype.move_cursor = function(xd, yd) {
+    this.cursor_pos_x += xd;
+    if (this.cursor_pos_x > this.get_line_length(this.cursor_pos_y)) {
+        this.cursor_pos_x = 0;
+        this.cursor_pos_y++;
+    } else if (this.cursor_pos_x < 0) {
+        this.cursor_pos_y--;
+        this.cursor_pos_x = this.get_line_length(this.cursor_pos_y);
+    }
+
+    this.cursor_pos_y += yd;
+    this.cursor_pos_y = Math.max(0, Math.min(this.get_line_count(), this.cursor_pos_y));
+
+    /*
     this.cursor_pos_x = Math.min(Math.max(0, this.cursor_pos_x + xd),
                                  this.data_buffer[this.cursor_pos_y].length);
-    this.cursor_pos_y = Math.min(Math.max(0, this.cursor_pos_y + xd),
-                                 this.data_buffer.length - 1);
+    this.cursor_pos_y = Math.min(Math.max(0, this.cursor_pos_y + yd),
+                                 this.get_line_count() - 1);
+     */
 };
 
 /*
@@ -56,6 +76,7 @@ Editor.prototype.type_character = function(c) {
     this.data_buffer[this.cursor_pos_y] = utils.string_insert(
         this.data_buffer[this.cursor_pos_y], this.cursor_pos_x, c
     );
+    this.move_cursor(1, 0);
 };
 
 /*
@@ -72,18 +93,73 @@ Editor.prototype.type_newline = function() {
     this.cursor_pos_y++;
 };
 
+/*
+ * Delete the character before the current position and adjust the
+ * cursor position.
+ */
+Editor.prototype.backspace = function() {
+    if (this.cursor_pos_x == 0) {
+        if (this.cursor_pos_y == 0) {
+            // Nothing to do; backspace at start of file
+            return;
+        }
+        // TODO: handle line merge
+        return;
+    }
+
+    this.data_buffer[this.cursor_pos_y] = utils.string_delete_char(
+        this.data_buffer[this.cursor_pos_y], this.cursor_pos_x - 1
+    );
+};
+
+Editor.prototype.get_line_count = function() {
+    return this.data_buffer.length;
+};
+
+Editor.prototype.get_line_length = function(line) {
+    if (line < 0 || line >= this.get_line_count()) {
+        throw "Cannot access line beyond end of buffer";
+    }
+
+    return this.data_buffer[line].length;
+};
+
 
 
 
 function KeyboardLayout(editor) {
     this.editor = editor;
-    $('html').keypress(this.keypress);
+    $('html').keypress(this, this.keypress);
 }
 
 KeyboardLayout.prototype.keypress = function(event) {
+    var self = event.data;
+    
     event.preventDefault();
     console.log(event);
 
-    this.editor.type_character(event.originalEvent.code);
-    this.editor.render();
+    // Detect ASCII characters
+    if (event.originalEvent.charCode > 0) {
+        self.editor.type_character(String.fromCharCode(event.originalEvent.charCode));
+        self.editor.render();
+        return;
+    }
+
+    // Handle arrow keys
+    switch (event.originalEvent.keyCode) {
+    case 37:  // Left Arrow
+        self.editor.move_cursor(-1, 0);
+        break;
+    case 38:  // Up Arrow
+        self.editor.move_cursor(0, -1);
+        break;
+    case 39:  // Right Arrow
+        self.editor.move_cursor(1, 0);
+        break;
+    case 40:  // Down Arrow
+        self.editor.move_cursor(0, 1);
+        break;
+    }
+    
+    self.editor.render();
 };

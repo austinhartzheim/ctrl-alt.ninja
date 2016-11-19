@@ -9,3 +9,7 @@ var utils = {};
 utils.string_insert = function(s1, pos, s2) {
     return s1.slice(0, pos) + s2 + s1.slice(pos);
 };
+
+utils.string_delete_char = function(str, pos) {
+    return str.slice(0, pos) + str.slice(pos + 1);
+};
