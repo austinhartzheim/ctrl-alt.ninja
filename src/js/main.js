@@ -107,12 +107,15 @@ Editor.prototype.backspace = function() {
             return;
         }
         // TODO: handle line merge
+        //var post_cursor = this.data_buffer[this.cursor_pos_y].splice(this.cursor_pos_x);
         return;
     }
 
     this.data_buffer[this.cursor_pos_y] = utils.string_delete_char(
         this.data_buffer[this.cursor_pos_y], this.cursor_pos_x - 1
     );
+
+    this.cursor_pos_x --;
 };
 
 Editor.prototype.get_line_count = function() {
@@ -181,6 +184,10 @@ KeyboardLayout.prototype.keypress = function(event) {
         break;
     case 40:  // Down Arrow
         self.editor.move_cursor(0, 1);
+        break;
+    case 8:   // Backspace
+        console.log('Backspace pushed');
+        self.editor.backspace();
         break;
     }
     
