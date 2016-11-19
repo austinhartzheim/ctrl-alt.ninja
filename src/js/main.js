@@ -178,6 +178,10 @@ function KeyboardLayout(editor) {
     $('html').keypress(this, this.keypress);
 }
 
+KeyboardLayout.prototype.destruct = function() {
+    $('html').off('keypress', handler=this.keypress);
+};
+
 KeyboardLayout.prototype.keypress = function(event) {
     var self = event.data;
     
