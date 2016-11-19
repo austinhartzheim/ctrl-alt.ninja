@@ -71,4 +71,22 @@ describe('test Editor', function() {
         expect(editor.data_buffer).toEqual(['hello']);
     });
 
+    it('test equals - equal, simple case', function() {
+        var editor1 = new Editor(null);
+        editor1.set_data_buffer(['hello', 'world']);
+        var editor2 = new Editor(null);
+        editor2.set_data_buffer(['hello', 'world']);
+
+        expect(editor1.equals(editor2)).toBe(true);
+    });
+
+    it('test equals - not equal, simple case', function() {
+        var editor1 = new Editor(null);
+        editor1.set_data_buffer(['hello', 'lksjdf']);
+        var editor2 = new Editor(null);
+        editor2.set_data_buffer(['hello', 'world']);
+
+        expect(editor1.equals(editor2)).toBe(false);
+    });
+
 });
