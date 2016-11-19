@@ -9,10 +9,11 @@
 	"author":"",
 	"license":"ISC",
 	"devDependencies":{
-		"gulp":"^3.9.0",
-		"gulp-concat":"*",
+		  "gulp":"^3.9.0",
+		  "gulp-concat":"*",
     	"browser-sync": "*",
-		"gulp-jshint": "*",
+      "jshint": "*",
+		  "gulp-jshint": "*",
     	"gulp-htmlmin": "*",
     	"yargs": "*",
 		"gulp-if": "*"
