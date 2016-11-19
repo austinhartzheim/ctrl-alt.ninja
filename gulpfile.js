@@ -7,7 +7,8 @@ var argv = require('yargs').argv;
 var gulpif = require('gulp-if');
 var reload = browserSync.reload;
 
-var JS_BLOB = 'src/*.js';
+var JS_BLOB = 'src/js/*.js';
+var JS_LIBS_BLOB = 'src/js/libs/*';
 var CSS_BLOB = 'src/css/*.css';
 var HTML_BLOB = 'src/*.html';
 var BUILD_BLOBS = ['build/*', 'build/*/*'];
@@ -30,8 +31,12 @@ gulp.task('build_html', function() {
 
 gulp.task('build_js', function() {
     gulp.src(JS_BLOB)
-        .pipe(concat('scripts.js'))
         .pipe(gulp.dest('./build/js/'));
+});
+
+gulp.task('build_js_libs', function() {
+    gulp.src(JS_LIBS_BLOB)
+        .pipe(gulp.dest('./build/js/libs/'));
 });
 
 gulp.task('build_css', function() {
@@ -40,7 +45,7 @@ gulp.task('build_css', function() {
         .pipe(gulp.dest('./build/css/'));
 });
 
-gulp.task('build', ['build_html', 'build_js', 'build_css']);
+gulp.task('build', ['build_html', 'build_js', 'build_js_libs', 'build_css']);
 
 gulp.task('serve', function() {
     browserSync({
