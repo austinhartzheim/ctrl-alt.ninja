@@ -16,13 +16,17 @@ Editor.prototype.render = function() {
     this.elm.empty();
     for (var i = 0; i < this.data_buffer.length; i++) {
         if (this.cy == i) {
-            if (this.cx == this.get_line_length(i)) {
-                this.elm.append('<p>' + this.data_buffer[i] + '<u>&nbsp;</u></p>');
-            } else {
-                this.elm.append('<p>' + this.data_buffer[i].slice(0, this.cx) +
-                                '<u>' + this.data_buffer[i].slice(this.cx, this.cx + 1) + '</u>' +
-                                this.data_buffer[i].slice(this.cx + 1));
+            var pre_cursor = this.data_buffer[i].slice(0, this.cx);
+            var at_cursor = this.data_buffer[i].slice(this.cx, this.cx + 1);
+            var post_cursor = this.data_buffer[i].slice(this.cx + 1);
+
+            console.log(pre_cursor, 8, at_cursor, 8, post_cursor);
+            if (at_cursor == ' ' || at_cursor == '') {
+                at_cursor = '&nbsp;';
             }
+
+            this.elm.append('<p>' + pre_cursor + '<u>' + at_cursor + '</u>' +
+                            post_cursor + '</p>');
         } else {
             this.elm.append("<p>" + this.data_buffer[i] + "</p>");
         }
