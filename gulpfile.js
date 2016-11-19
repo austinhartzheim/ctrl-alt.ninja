@@ -41,7 +41,6 @@ gulp.task('build_js_libs', function() {
 
 gulp.task('build_css', function() {
     gulp.src(CSS_BLOB)
-        .pipe(concat('main.css'))
         .pipe(gulp.dest('./build/css/'));
 });
 
