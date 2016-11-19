@@ -72,6 +72,13 @@ Editor.prototype.move_cursor = function(xd, yd) {
 };
 
 /*
+ * Move the cursor to the end of the line.
+ */
+Editor.prototype.move_cursor_end = function() {
+    this.cursor_pos_x = this.get_line_length(this.cursor_pos_y);
+};
+
+/*
  * Move the cursor to the start of the line.
  */
 Editor.prototype.move_cursor_home = function() {
@@ -120,6 +127,7 @@ Editor.prototype.backspace = function() {
         }
         // TODO: handle line merge
         //var post_cursor = this.data_buffer[this.cursor_pos_y].splice(this.cursor_pos_x);
+        //console.log(post_cursor);
         return;
     }
 
@@ -185,6 +193,15 @@ KeyboardLayout.prototype.keypress = function(event) {
 
     // Handle arrow keys
     switch (event.originalEvent.keyCode) {
+    case 8:   // Backspace
+        self.editor.backspace();
+        break; 
+    case 35:  // End
+        self.editor.move_cursor_end();
+        break;   
+    case 36:  // Home
+        self.editor.move_cursor_home();
+        break;
     case 37:  // Left Arrow
         self.editor.move_cursor(-1, 0);
         break;
@@ -196,10 +213,6 @@ KeyboardLayout.prototype.keypress = function(event) {
         break;
     case 40:  // Down Arrow
         self.editor.move_cursor(0, 1);
-        break;
-    case 8:   // Backspace
-        console.log('Backspace pushed');
-        self.editor.backspace();
         break;
     }
     
