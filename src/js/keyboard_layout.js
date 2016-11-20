@@ -14,18 +14,38 @@ KeyboardLayout.prototype.keypress = function(event) {
     console.log(event);
 
     // Handle Ctrl+key commands
-    if (event.originalEvent.ctrlKey){
+    if (event.originalEvent.ctrlKey && event.originalEvent.ctrlKey){       
 
         switch (event.originalEvent.charCode) {
         case 97:   // Ctrl-a (Home)
             self.editor.move_cursor_home();
             break; 
+        case 98:   // Ctrl-b (Back char)
+            self.editor.move_cursor(-1, 0);
+            break; 
         case 101:  // Ctrl-e (End)
             self.editor.move_cursor_end();
             break; 
-        case 107: //Ctrl-k (Kill rest of line)
+        case 102:  // Ctrl-f (Forward char)
+            self.editor.move_cursor(1, 0);
+            break; 
+        case 107:  //Ctrl-k (Kill rest of line)
             self.editor.kill_line();
             break;
+        case 112:  // Ctrl-p (Previous line)
+            self.editor.move_cursor(0, -1);
+            break; 
+        }
+
+    } else if (event.originalEvent.altKey && event.originalEvent.shiftKey) {
+
+        switch (event.originalEvent.charCode) {
+        case 60:   // M-< (Beginning of Text)
+            self.editor.move_cursor_beginning_of_text();
+            break; 
+        case 62:   // M-> (End of Text)
+            self.editor.move_cursor_end_of_text();
+            break; 
         }
 
     } else {
