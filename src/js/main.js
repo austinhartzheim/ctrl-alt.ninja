@@ -54,9 +54,11 @@ $(document).ready(function() {
                 start_level_0();
             } else if (elm_num == 1) {
                 start_level_1();
+            } else if (elm_num == 2) {
+                start_level_2();
             }
 
-            game.start();
+            // game.start();
         });
 
 });

@@ -78,7 +78,7 @@ var level_data = [
             },
             {
                 start: ['Ninja Commandments:', '1. If you see a ninja, ', '2.  do not sleep. They wait'],
-                goal: ['Ninja Commandments:', '1. If you see a ninja, they are not a ninja!', '2. Ninjas do not sleep. They wait...'],
+                match: ['Ninja Commandments:', '1. If you see a ninja, they are not a ninja!', '2. Ninjas do not sleep. They wait...'],
                 pos: {
                     mode: MODES.SET,
                     x: 0,
@@ -95,7 +95,7 @@ var level_data = [
         steps: [
             {
                 start: ['Email Draft:', 'Dear Employer,', 'It is my greatest displeasure to inform you that I must resign,', 'due to my recent transformation into a keyboard shortcut ninja.', 'I hope you will understand.', 'Sincerely,', 'Ctrl-Alt Ninja'],
-                goal: ['Email Draft:', 'Dear Suckaa,', 'I\'m outtie.', 'Gotta do me now.', 'Could you write me a letter of rec??', 'Peace', ''],
+                match: ['Email Draft:', 'Dear Suckaa,', 'I\'m outtie.', 'Gotta do me now.', 'Could you write me a letter of rec??', 'Peace', ''],
                 pos: {
                     mode: MODES.SET,
                     x: 0,
@@ -442,7 +442,7 @@ Level2.prototype.win = function() {
 
 // Temporary hacks while we restructure the main game logic
 function start_level_2() {
-    game = new Game(Level1);
+    game = new Game(Level2);
     game.start();
 }
 
