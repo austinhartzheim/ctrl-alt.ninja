@@ -28,6 +28,11 @@ body {
 
 .screen-menu {
     background: #6A003C;
+    text-align: center;
+}
+
+.screen-menu .hex-row {
+    display: inline-block;
 }
 
 .editor {
@@ -94,4 +99,14 @@ dl dt {
 }
 dl dd {
     margin-bottom: 4px;
+}
+
+.description-box {
+    border: 2px dashed white;
+    padding: 20px !important;
+    /*margin: 100px;*/
+    text-align: left;
+
+    transition: opacity 1s;
+    opacity: 0;
 }

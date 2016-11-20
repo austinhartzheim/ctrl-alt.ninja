@@ -38,6 +38,13 @@
 .hex-row {
     clear: left;
 }
+.hex-row::after {
+    /* Clearfix */
+    content:"";
+    display:block;
+    clear:both;
+    padding-top: 52px;
+}
 .hex.even {
     margin-top: 53px;
 }

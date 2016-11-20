@@ -129,7 +129,7 @@ Level0.prototype.win = function() {
 
 function insert_level_screen(num) {
     
-    $('<div class="screen level"><div class="container">' +
+    $('<div class="screen level" id="level'+num+'"><div class="container">' +
       '  <div class="level-header">' + 
       '    <h1>' + level_data[num].title + '</h1>' +
       '    <p>' + level_data[num].desc_short + '</p>' +

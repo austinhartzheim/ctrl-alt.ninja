@@ -18,10 +18,24 @@
       var game;
       $(document).ready(function() {
 
+        //click events scroll to correct div
         $(".hex").click(function() {
             $('html, body').animate({
-                scrollTop: $("#game-view").offset().top
+                scrollTop: $("#level0").offset().top
             }, 750);
+        });
+
+        //$(".description-box").css('opacity', 0);
+
+        //hover events update box
+        $(".hex").hover(function() {
+            // Total hack to update text
+            var elm_num = parseInt(this.id.slice(3));
+            $("#level-title").text(level_data[elm_num].title);
+            $("#level-desc").text(level_data[elm_num].desc_short);
+            $(".description-box").css('opacity', 1);
+        }, function() {
+            $(".description-box").css('opacity', 0);
         });
 
         $("#begin-button").click(function() {
@@ -63,30 +77,37 @@
           <h1>Ctrl-Alt.Ninja</h1>
 
           <div class="hex-row">
-            <a href="#" class="hex">
+            <a href="#" class="hex" id="hex0">
               <div class="left"></div>
               <div class="middle">0</div>
               <div class="right"></div>
             </a>
-            <a href="#" class="hex even"> 
+            <a href="#" class="hex even" id="hex1"> 
               <div class="left"></div>
               <div class="middle">1</div>
               <div class="right"></div>
             </a>
-            <a href="#" class="hex">
+            <a href="#" class="hex" id="hex2">
               <div class="left"></div>
               <div class="middle">2</div>
               <div class="right"></div>
             </a>
-            <a href="#" class="hex even">  
+            <a href="#" class="hex even" id="hex3">  
               <div class="left"></div>
               <div class="middle">3</div>
               <div class="right"></div>
             </a>
           </div>
+        </div>
 
+        <div class="description-box" id="description-box">
+          <dl>
+            <dt>Title:</dt><dd id="level-title"></dd>
+            <dt>Description:</dt><dd id="level-desc"></dd>
+         </dl>
         </div>
       </div>
+
     </div>
 
     <div class="screen credits" id="credits-screen">
