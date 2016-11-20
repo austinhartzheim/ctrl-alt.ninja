@@ -17,8 +17,16 @@
     <script type="text/javascript">
       var game;
       $(document).ready(function() {
+
+        $(".hex").click(function() {
+            $('html, body').animate({
+                scrollTop: $("#game-view").offset().top
+            }, 500);
+        });
+
         game = new Game();
         game.start();
+
       });
     </script>
   </head>
@@ -39,26 +47,26 @@
           <h1>Ctrl-Alt.Ninja</h1>
 
           <div class="hex-row">
-            <div class="hex" type="button">
+            <a href="#" class="hex">
               <div class="left"></div>
               <div class="middle">Level 1</div>
               <div class="right"></div>
-            </div>
-            <div class="hex even" type="button">  
+            </a>
+            <a href="#" class="hex even"> 
               <div class="left"></div>
               <div class="middle">Level 2</div>
               <div class="right"></div>
-            </div>
-            <div class="hex" type="button">
+            </a>
+            <a href="#" class="hex">
               <div class="left"></div>
               <div class="middle">Level 3</div>
               <div class="right"></div>
-            </div>
-            <div class="hex even" type="button">  
+            </a>
+            <a href="#" class="hex even">  
               <div class="left"></div>
               <div class="middle">Level 4</div>
               <div class="right"></div>
-            </div>
+            </a>
           </div>
 
         </div>
@@ -67,7 +75,7 @@
 
     <div class="screen level">
       <div class="container">
-        <div class="level-header">
+        <div id="game-view" class="level-header">
           <h1 id="level-title">Level Title</h1>
           <p id="level-desc">Get introduced to the game.</p>
         </div>
