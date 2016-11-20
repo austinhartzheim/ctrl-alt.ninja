@@ -90,3 +90,7 @@ dl dt {
 dl dd {
     margin-bottom: 4px;
 }
+
+.editor div {
+    transition: color 0.25s;
+}

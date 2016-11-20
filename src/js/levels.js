@@ -84,8 +84,9 @@ Level1.prototype.set_up_level = function() {
     );
     this.editor.set_data_buffer(
         this.steps[this.progress]['start']
-    );
+    );    
     this.editor.set_cursor(pos.x, pos.y);
+    this.editor.enable_diffing(this.display);
     this.display.render();
     this.editor.render();
 
@@ -103,6 +104,7 @@ Level1.prototype.loop = function() {
 };
 
 Level1.prototype.win = function() {
+    this.editor.render();  // Render one more time to reset coloring
     // TODO: display some sort of message
     // TODO: allow advancing to level 2.
 };

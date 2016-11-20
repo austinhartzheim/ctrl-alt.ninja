@@ -9,9 +9,16 @@ function Editor(elm, display_cursor) {
     
     this.cx = 0;
     this.cy = 0;
-
+    self.diff = false;
+    self.diff_target = null;
+    
     this.data_buffer = ["hello world", "how are you?"];
 }
+
+Editor.prototype.enable_diffing = function(diff_target) {
+    this.diff_target = diff_target;
+    this.diff = true;
+};
 
 Editor.prototype.render = function() {
     this.elm.empty();
@@ -31,14 +38,30 @@ Editor.prototype.render = function() {
                 at_cursor = '&nbsp;';
             }
 
-            this.elm.append('<div>' + pre_cursor + '<u>' + at_cursor + '</u>' +
-                            post_cursor + '</div>');
+            var line = $('<div>' + pre_cursor + '<u>' + at_cursor + '</u>' +
+                         post_cursor + '</div>');
+            if (this.diff && this.diff_target.get_line_count() > i) {
+                if (this.get_line(i) != this.diff_target.get_line(i)) {
+                    line.css('color', 'yellow');
+                }
+            }
+
+            this.elm.append(line);
         } else {
             if (this.data_buffer[i] == '') {
                 this.elm.append('<br />');
             } else {
-                var str = utils.string_escape(this.data_buffer[i]);
-                this.elm.append("<div>" + str + "</div>");
+                var line = $('<div>', {
+                    text: this.data_buffer[i]
+                });
+
+                if (this.diff && this.diff_target.get_line_count() > i) {
+                    if (this.get_line(i) != this.diff_target.get_line(i)) {
+                        line.css('color', 'red');
+                    }
+                }
+                console.log(line);
+                this.elm.append(line);
             }
         }
     }
