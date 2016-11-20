@@ -104,7 +104,7 @@ var level_data = [
         steps: [
             {
                 start: ['if (var && 1)', '  count ++;', '  input = readInput();', 'else', '  count --;', '  input = readInput();'],
-                goal: ['if (var)', '  count ++;', 'input = readInput();'],
+                match: ['if (var)', '  count ++;', 'input = readInput();'],
                 pos: {
                     mode: MODES.SET,
                     x: 0,
@@ -113,7 +113,7 @@ var level_data = [
             },
             {
                 start: ['while ( WildHacks ) {', '  keyboard.add("crumbs");', '  for each (person in sleepingRoom){', '    if (!light)', '      step_on(person);', '  }', '  if (sleepy)', '    sleep();', '  else', '    code();', '  eatJunkFood(MAX_LIMIT);', '}'],
-                goal: ['while ( WildHacks ) {', '  keyboard.add("crumbs");', '  for each (free_item in Bathroom){', '    backStack.push(free_item);', '  }', '  if (sleepy)', '    redbull();', '  Building.temperature --;', '}'],
+                match: ['while ( WildHacks ) {', '  keyboard.add("crumbs");', '  for each (free_item in Bathroom){', '    backStack.push(free_item);', '  }', '  if (sleepy)', '    redbull();', '  Building.temperature --;', '}'],
                 pos: {
                     mode: MODES.SET,
                     x: 0,
@@ -446,6 +446,117 @@ function start_level_2() {
     game = new Game(Level2);
     game.start();
 }
+
+
+
+
+/*
+ * Level 3
+ */
+function Level3() {
+    this.num = 3;
+
+    this.steps = level_data[this.num].steps;
+    this.progress = 0;
+
+    this.intro();
+    this.set_up_level();
+}
+
+Level3.prototype.start = function() {
+    $('html, body').animate({
+        scrollTop: $("#level3").offset().top
+    }, 750, function() {
+        game.level.intro();
+    });
+};
+
+Level3.prototype.intro = function() {
+    show_modal(level_data[this.num].title,
+               level_data[this.num].desc_short,
+               level_data[this.num].desc_long,
+               'Let\'s Start!',
+               function(e) {game.level.set_up_level();}
+              );
+};
+
+Level3.prototype.set_up_level = function() {
+    // Detach old keyboard bindings if any
+    if (this.keyboard_layout != null) {
+        this.keyboard_layout.destruct();
+    }
+
+    // Check if there is a next step; return early
+    if (this.progress >= this.steps.length) {
+        this.win();
+        return;
+    }
+
+    // Store/Set up the cursor state
+    var pos = {};
+    switch(this.steps[this.progress].pos.mode) {
+    case MODES.KEEP:
+        pos.x = this.editor.get_cursor_x();
+        pos.y = this.editor.get_cursor_y();
+        break;
+    case MODES.SET:
+        pos.x = this.steps[this.progress].pos.x;
+        pos.y = this.steps[this.progress].pos.y;
+        break;
+    default:
+        throw 'No cursor position mode set';
+    }
+    
+    // Create editors
+    this.display = new Editor($('#level3-display'), false);
+    this.editor = new Editor($('#level3-editor'), true);
+
+    // Initialize editor states
+    console.log(this.display);
+    this.display.set_data_buffer(
+        this.steps[this.progress]['match']
+    );
+    this.editor.set_data_buffer(
+        this.steps[this.progress]['start']
+    );    
+    this.editor.set_cursor(pos.x, pos.y);
+    this.editor.enable_diffing(this.display);
+    this.display.render();
+    this.editor.render();
+
+    // Attach keyboard binding
+    this.keyboard_layout = new KeyboardLayout(this.editor);
+
+    // Game implicitly begins
+};
+
+Level3.prototype.loop = function() {
+    if (this.display.equals(this.editor)) {
+        this.progress++;
+        this.set_up_level();
+    }
+};
+
+Level3.prototype.win = function() {
+    this.editor.render();  // Render one more time to reset coloring
+    game.stop();
+
+    show_modal('Congratulations!',
+               'You passed a level.',
+               level_data[this.num].msg_win,
+               'Continue',
+               function(e) {console.log('not implemented');}
+              );
+    // TODO: allow advancing to the next level
+};
+
+
+// Temporary hacks while we restructure the main game logic
+function start_level_3() {
+    game = new Game(Level3);
+    game.start();
+}
+
 
 
 

@@ -56,6 +56,8 @@ $(document).ready(function() {
                 start_level_1();
             } else if (elm_num == 2) {
                 start_level_2();
+            } else if (elm_num == 3) {
+                start_level_3();
             }
 
             // game.start();
