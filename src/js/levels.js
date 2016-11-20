@@ -87,7 +87,7 @@ var level_data = [
         steps: [
             {
                 start: ['Email Draft:', 'Dear Employer,', 'It is my greatest displeasure to inform you that I must resign,', 'due to my recent transformation into a keyboard shortcut ninja.', 'I hope you will understand.', 'Sincerely,', 'Ctrl-Alt Ninja'],
-                match: ['Email Draft:', 'Dear Suckaa,', 'I\'m outtie.', 'Gotta do me now.', 'Could you write me a letter of rec??', 'Peace', ''],
+                match: ['Email Draft:', 'Dear Sucker,', 'I\'m out of here!', 'I gotta do me now.', 'Could you write me a letter of rec??', 'Peace'],
                 pos: {
                     mode: MODES.SET,
                     x: 0,
