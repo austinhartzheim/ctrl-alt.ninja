@@ -7,7 +7,14 @@ var level_data = [
     {
         title: 'Introduction',
         desc_short: 'Learn to play the game.',
-        desc_long: 'Replicate the text you see on the top half of your screen in the lower half of the screen.',
+        desc_long: ('<h2>Welcome, Ninja!</h2><p>You have started down the path of becomming a <i>Keyboard Ninja</i>.</p>' +
+                    '<p>There are two skills every Keyboard Ninja must learn: <ol><li>keyboard shortcuts</li><li>and when to use them</li></ol></p>' +
+                    '<p>Together these skills provide great power.</p>' +
+                    '<h2>What you must do</h2>' +
+                    '<ul><li>Replicate the text you see on the screen by typing it.</li><li>Apply the shortcuts we will teach you to advance on your journey.</li></ul>'),
+        msg_win: ('<h2>Your journey has begun!</h2><p>You have passed the first of many levels on your long journey to become a <i>Keyboard Ninja</i>.</p>' +
+                  '<p>When you are ready to continue, you may click the button below.</p>'),
+                  
         steps: [
             {
                 start: ['type here'],
@@ -62,6 +69,15 @@ function Level0() {
     this.intro();
     this.set_up_level();
 }
+
+Level0.prototype.start = function() {
+    $('html, body').animate({
+        scrollTop: $("#level0").offset().top
+    }, 750, function() {
+        console.log('scroll complete');
+        game.level.intro();
+    });
+};
 
 Level0.prototype.intro = function() {
     show_modal(level_data[this.num].title,
@@ -131,7 +147,13 @@ Level0.prototype.loop = function() {
 Level0.prototype.win = function() {
     this.editor.render();  // Render one more time to reset coloring
     game.stop();
-    // TODO: display some sort of message
+
+    show_modal('Congratulations!',
+               'You passed a level.',
+               level_data[this.num].msg_win,
+               'Continue',
+               function(e) {console.log('not implemented');}
+              );
     // TODO: allow advancing to level 2.
 };
 

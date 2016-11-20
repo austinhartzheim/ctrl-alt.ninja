@@ -15,43 +15,6 @@
     <script src="js/utils.js" type="text/javascript"></script>
     <script src="js/levels.js" type="text/javascript"></script>
     <script src="js/modal.js" type="text/javascript"></script>
-    <script type="text/javascript">
-      var game;
-      $(document).ready(function() {
-
-        //click events scroll to correct div
-        $(".hex").click(function() {
-            $('html, body').animate({
-                scrollTop: $("#level0").offset().top
-            }, 750);
-        });
-
-        //$(".description-box").css('opacity', 0);
-
-        //hover events update box
-        $(".hex").hover(function() {
-            // Total hack to update text
-            var elm_num = parseInt(this.id.slice(3));
-            $("#level-title").text(level_data[elm_num].title);
-            $("#level-desc").text(level_data[elm_num].desc_short);
-            $(".description-box").css('opacity', 1);
-        }, function() {
-            $(".description-box").css('opacity', 0);
-        });
-
-        $("#begin-button").click(function() {
-            $('html, body').animate({
-                scrollTop: $("#main-menu").offset().top
-            }, 750);
-        });
-
-        insert_all_levels();
-
-        game = new Game();
-        game.start();
-
-      });
-    </script>
   </head>
   <body>
     <div class="screen screen-splash">
