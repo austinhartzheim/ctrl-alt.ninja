@@ -278,8 +278,8 @@ Editor.prototype.find_stop_point = function(direction) {
 
             // stop if we reach EOF
             if (scanline >= this.get_line_count()) {
-                return [this.get_line_length(this.get_line_count() - 1),
-                        this.get_line_count() - 1];
+                return {x: this.get_line_length(this.get_line_count() - 1),
+                        y: this.get_line_count() - 1};
             }
 
             // Update found_nonstop_char
@@ -290,14 +290,14 @@ Editor.prototype.find_stop_point = function(direction) {
             // stop if we have found a non-stop char and reached EOL
             if (scanchar == this.get_line_length(scanline)) {
                 if (found_nonstop_char) {
-                    return [scanchar, scanline];
+                    return {x: scanchar, y: scanline};
                 }
             }
             
             // stop if we have found a non-stop char and reached a stop char
             if (found_nonstop_char &&
                 stop_chars.indexOf(this.get_character(scanchar, scanline)) != -1) {
-                return [scanchar, scanline];
+                return {x: scanchar, y: scanline};
             }
         } else {
             // Decrement position
@@ -311,27 +311,23 @@ Editor.prototype.find_stop_point = function(direction) {
 
             // update found_nonstop_char
             if (stop_chars.indexOf(this.get_character(scanchar, scanline)) == -1) {
-                console.log('found nonstop char:', this.get_character(scanchar, scanline));
                 found_nonstop_char = true;
             }
             
             // stop if we found a non-stop char and reached a stop char
             if (found_nonstop_char &&
                 stop_chars.indexOf(this.get_character(scanchar, scanline)) != -1) {
-                console.log('returning from found nonstop char and reached stop char');
-                return [scanchar + 1, scanline];
+                return {x: scanchar + 1, y: scanline};
             }
 
             // stop if we found a nonstop char and reached SOL
             if (found_nonstop_char && scanchar == 0) {
-                console.log('returning from SOL');
-                return [scanchar, scanline];
+                return {x: scanchar, y: scanline};
             }
 
             // stop if we reach SOF
             if (scanline <= 0 && scanchar <= 0) {
-                console.log('returning from SOF');
-                return [0, 0];
+                return {x: 0, y: 0};
             }
         }
     }

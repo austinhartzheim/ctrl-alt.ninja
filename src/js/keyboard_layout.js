@@ -37,15 +37,32 @@ KeyboardLayout.prototype.keypress = function(event) {
             break; 
         }
 
-    } else if (event.originalEvent.altKey && event.originalEvent.shiftKey) {
+    } else if (event.originalEvent.altKey) {
+        
+        if (event.originalEvent.shiftKey) {
+            
+            switch (event.originalEvent.charCode) {
+            case 60:   // M-< (Beginning of Text)
+                self.editor.move_cursor_beginning_of_text();
+                break; 
+            case 62:   // M-> (End of Text)
+                self.editor.move_cursor_end_of_text();
+                break; 
+            }
+            
+        } else {
 
-        switch (event.originalEvent.charCode) {
-        case 60:   // M-< (Beginning of Text)
-            self.editor.move_cursor_beginning_of_text();
-            break; 
-        case 62:   // M-> (End of Text)
-            self.editor.move_cursor_end_of_text();
-            break; 
+            switch (event.originalEvent.keyCode) {
+            case 37:  // Left Arrow
+                var next_stop = self.editor.find_stop_point(false);
+                self.editor.set_cursor(next_stop.x, next_stop.y);
+                break;
+            case 39:  // Right Arrow
+                var next_stop = self.editor.find_stop_point(true);
+                self.editor.set_cursor(next_stop.x, next_stop.y);
+                break;
+            }
+            
         }
 
     } else {
