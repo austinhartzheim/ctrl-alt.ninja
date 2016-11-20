@@ -160,6 +160,26 @@ Editor.prototype.kill_line = function() {
 };
 
 /*
+ * Move cursor to 0,0.
+ */
+Editor.prototype.move_cursor_beginning_of_text = function() {
+
+    this.cx = 0;
+    this.cy = 0;
+
+};
+
+/*
+ * Move cursor to the end of the text.
+ */
+Editor.prototype.move_cursor_end_of_text = function() {
+
+    this.cy = this.get_line_count() - 1;
+    this.cx = this.get_line_length(this.cy);
+
+};
+
+/*
  * Delete the character before the current position and adjust the
  * cursor position.
  */

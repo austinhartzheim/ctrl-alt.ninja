@@ -6,6 +6,26 @@ describe('test Editor', function() {
         expect(editor.cy).toBe(0);
     });
 
+    it('test move cursor to beginning', function() {
+        var editor = new Editor(null);
+
+        editor.set_data_buffer(['hello']);
+        editor.move_cursor_beginning_of_text();
+
+        expect(editor.cx).toBe(0);
+        expect(editor.cy).toBe(0);
+    });
+
+    it('test move cursor to end', function() {
+        var editor = new Editor(null);
+
+        editor.set_data_buffer(['hello']);
+        editor.move_cursor_end_of_text();
+
+        expect(editor.cx).toBe(5);
+        expect(editor.cy).toBe(0);
+    });
+
     it('cursor simple move', function() {
         var editor = new Editor(null);
 
