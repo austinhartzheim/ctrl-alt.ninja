@@ -36,18 +36,16 @@ var level_data = [
     }
 ];
 
-function Level1() {
+function Level0() {
     this.num = 0;
 
     this.steps = level_data[this.num].steps;
     this.progress = 0;
 
-    $('#level-title').text('Introduction');
-    $('#level-desc').text('Learn how to play.');
     this.set_up_level();
 }
 
-Level1.prototype.set_up_level = function() {
+Level0.prototype.set_up_level = function() {
     // Detach old keyboard bindings if any
     if (this.keyboard_layout != null) {
         this.keyboard_layout.destruct();
@@ -75,8 +73,8 @@ Level1.prototype.set_up_level = function() {
     }
     
     // Create editors
-    this.display = new Editor($('#text-display'), false);
-    this.editor = new Editor($('#text-editor'), true);
+    this.display = new Editor($('#level0-display'), false);
+    this.editor = new Editor($('#level0-editor'), true);
 
     // Initialize editor states
     this.display.set_data_buffer(
@@ -96,15 +94,41 @@ Level1.prototype.set_up_level = function() {
     // Game implicitly begins
 };
 
-Level1.prototype.loop = function() {
+Level0.prototype.loop = function() {
     if (this.display.equals(this.editor)) {
         this.progress++;
         this.set_up_level();
     }
 };
 
-Level1.prototype.win = function() {
+Level0.prototype.win = function() {
     this.editor.render();  // Render one more time to reset coloring
+    game.stop();
     // TODO: display some sort of message
     // TODO: allow advancing to level 2.
 };
+
+
+
+function insert_level_screen(num) {
+    
+    $('<div class="screen level"><div class="container">' +
+      '  <div class="level-header">' + 
+      '    <h1>' + level_data[num].title + '</h1>' +
+      '    <p>' + level_data[num].desc_short + '</p>' +
+      '  </div><div>' +
+      '    <h2>Goal:</h2>' +
+      '    <pre class="editor" id="level' + num + '-display"></pre>' +
+      '  </div><div>' +
+      '    <h2>Type:</h2>' + 
+      '    <pre class="editor" id="level' + num + '-editor"></pre>' +
+      '  </div></div></div>')
+        .insertBefore($('#credits-screen'));
+};
+
+function insert_all_levels() {
+    for (var i = 0; i < level_data.length; i++) {
+        console.log('inserting level', i);
+        insert_level_screen(i);
+    }
+}

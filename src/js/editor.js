@@ -60,7 +60,6 @@ Editor.prototype.render = function() {
                         line.css('color', 'red');
                     }
                 }
-                console.log(line);
                 this.elm.append(line);
             }
         }

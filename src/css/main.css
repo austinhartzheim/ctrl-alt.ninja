@@ -65,6 +65,7 @@ body {
 
 #logo {
     max-height: 25vh;
+    transition: all 0.5s;
 }
 
 .slogan {

@@ -30,6 +30,8 @@
             }, 750);
         });
 
+        insert_all_levels();
+
         game = new Game();
         game.start();
 
@@ -87,24 +89,7 @@
       </div>
     </div>
 
-    <div class="screen level">
-      <div class="container">
-        <div id="game-view" class="level-header">
-          <h1 id="level-title">Level Title</h1>
-          <p id="level-desc">Get introduced to the game.</p>
-        </div>
-        <div>
-          <h2>Goal:</h2>
-          <pre class="editor" id="text-display"></pre>
-        </div>
-        <div>
-          <h2>Type:</h2>
-          <pre class="editor" id="text-editor">Textarea to type</pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="screen credits">
+    <div class="screen credits" id="credits-screen">
       <div class="container">
         <div class="level-header">
           <h1>Credits</h1>
