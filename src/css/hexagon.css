@@ -1,12 +1,14 @@
 .hex {
+    color: white;
     float: left;
     margin-right: -26px;
     margin-bottom: -50px;
+    font-size: 26pt;
 }
 .hex .left {
     float: left;
     width: 0;
-    border-right: 30px solid #6C6;
+    border-right: 30px solid #303030;
     border-top: 52px solid transparent;
     border-bottom: 52px solid transparent;
 }
@@ -14,13 +16,17 @@
     float: left;
     width: 60px;
     height: 104px;
-    background: #6C6;
+    background: #303030;
     text-align:center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 .hex .right {
     float: left;
     width: 0;
-    border-left: 30px solid #6C6;
+    border-left: 30px solid #303030;
     border-top: 52px solid transparent;
     border-bottom: 52px solid transparent;
 }
@@ -31,14 +37,14 @@
     margin-top: 53px;
 }
 .hex:hover{
-    color:red;
+    color: black;
 }
 .hex:hover > .left {
-    border-right: 30px solid #000;
+    border-right: 30px solid #1b781b;
 }
 .hex:hover > .middle {
-    background: #000;
+    background: #1b781b;
 }
 .hex:hover > .right {
-    border-left: 30px solid #000;
+    border-left: 30px solid #1b781b;
 }
