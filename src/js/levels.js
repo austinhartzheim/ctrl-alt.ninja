@@ -3,8 +3,11 @@ var MODES = {
     KEEP: 2
 };
 
-var level_data = {
-    'level1': {
+var level_data = [
+    {
+        title: 'Introduction',
+        desc_short: 'Learn to play the game.',
+        desc_long: 'Replicate the text you see on the top half of your screen in the lower half of the screen.',
         steps: [
             {
                 start: ['type here'],
@@ -31,12 +34,12 @@ var level_data = {
             }
         ]
     }
-};
+];
 
 function Level1() {
-    this.name = 'level1';
+    this.num = 0;
 
-    this.steps = level_data[this.name].steps;
+    this.steps = level_data[this.num].steps;
     this.progress = 0;
 
     $('#level-title').text('Introduction');
