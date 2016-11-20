@@ -184,6 +184,15 @@ describe('test Editor', function() {
         expect(editor.data_buffer).toEqual(['hello']);
     });
 
+    it('test backspace newline', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['hello','world']);
+        editor.move_cursor(0, 1);
+        editor.backspace();
+
+        expect(editor.data_buffer).toEqual(['helloworld']);
+    });
+
     it('test equals - equal, simple case', function() {
         var editor1 = new Editor(null);
         editor1.set_data_buffer(['hello', 'world']);
