@@ -42,6 +42,8 @@ body {
 
     transition: opacity 1s;
     opacity: 0;
+
+    font-size: 125%;
 }
 
 .editor {
@@ -90,6 +92,10 @@ body {
 /* Generic Styles */
 a {
     color: #e0e0e0;
+}
+
+h1 {
+    font-size: 36pt;
 }
 
 .button,
