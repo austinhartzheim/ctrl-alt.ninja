@@ -68,15 +68,6 @@ var level_data = [
                 }
             },
             {
-                start: ['// this is a typing game', 'int main() {', '  return 0;', '}'],
-                match: ['// this is a typing game', 'int main() {', '  return 0;', '}'],
-                pos: {
-                    mode: MODES.SET,
-                    x: 0,
-                    y: 0
-                }
-            },
-            {
                 start: ['Ninja Commandments:', '1. If you see a ninja, ', '2.  do not sleep. They wait'],
                 match: ['Ninja Commandments:', '1. If you see a ninja, they are not a ninja!', '2. Ninjas do not sleep. They wait...'],
                 pos: {
@@ -108,11 +99,20 @@ var level_data = [
     {
         title: 'Haxx0r Ninja',
         desc_short: 'Ninjas don\'t make n00bie mistakes.',
-        desc_long: 'C-k to kill line',
+        desc_long: 'Ctrl-k to kill line',
         steps: [
             {
-                start: ['if (var && 1)', 'count ++;', 'input = readInput();', ''],
-                goal: ['if (var)', 'Dear Suckaa,', 'I\'m outtie.', 'Gotta do me now.', 'Could you write me a letter of rec??', 'Peace', ''],
+                start: ['if (var && 1)', '  count ++;', '  input = readInput();', 'else', '  count --;', '  input = readInput();'],
+                goal: ['if (var)', '  count ++;', 'input = readInput();'],
+                pos: {
+                    mode: MODES.SET,
+                    x: 0,
+                    y: 0
+                }
+            },
+            {
+                start: ['while ( WildHacks ) {', '  keyboard.add("crumbs");', '  for each (person in sleepingRoom){', '    if (!light)', '      step_on(person);', '  }', '  if (sleepy)', '    sleep();', '  else', '    code();', '  eatJunkFood(MAX_LIMIT);', '}'],
+                goal: ['while ( WildHacks ) {', '  keyboard.add("crumbs");', '  for each (free_item in Bathroom){', '    backStack.push(free_item);', '  }', '  if (sleepy)', '    redbull();', '  Building.temperature --;', '}'],
                 pos: {
                     mode: MODES.SET,
                     x: 0,
