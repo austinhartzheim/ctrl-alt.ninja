@@ -1,8 +1,7 @@
 var game;
 
-function Game() {
-    this.level = new Level0();
-    this.level.start();
+function Game(level) {
+    this.level = new level();
 
     this.animation_frame_request = null;
     this.loop_interval = 50;
@@ -10,6 +9,7 @@ function Game() {
 }
 
 Game.prototype.start = function() {
+    this.level.start();
     setTimeout(function() {game.loop();}, this.loop_interval);
 };
 
@@ -53,7 +53,7 @@ $(document).ready(function() {
             if (elm_num == 0) {
                 start_level_0();
             } else if (elm_num == 1) {
-                console.log("Game object not created yet");
+                start_level_1();
             }
 
             game.start();

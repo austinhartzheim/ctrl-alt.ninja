@@ -5,14 +5,14 @@
  */
 function Editor(elm, display_cursor) {
     this.elm = elm;
-    this.display_cursor = display_cursor;
+    this.display_cursor = display_cursor || false;
     
     this.cx = 0;
     this.cy = 0;
     self.diff = false;
     self.diff_target = null;
     
-    this.data_buffer = ["hello world", "how are you?"];
+    this.data_buffer = [];
 }
 
 Editor.prototype.enable_diffing = function(diff_target) {
