@@ -35,6 +35,15 @@ body {
     display: inline-block;
 }
 
+.description-box {
+    border: 2px dashed white;
+    padding: 20px !important;
+    text-align: left;
+
+    transition: opacity 1s;
+    opacity: 0;
+}
+
 .editor {
     text-align: left;
     font-family: monospace;
@@ -45,17 +54,17 @@ body {
     padding: 12px;
 }
 
-.level-header {
+.header {
     border-bottom: 2px dashed white;
     text-align: center;
 }
 
-.level-header p {
+.header p {
     font-style: italic;
     font-size: 12pt;
 }
 
-.level-header h1 {
+.header h1 {
     font-size: 32pt;
 }
 
@@ -101,12 +110,59 @@ dl dd {
     margin-bottom: 4px;
 }
 
-.description-box {
-    border: 2px dashed white;
-    padding: 20px !important;
-    /*margin: 100px;*/
-    text-align: left;
+.button-green {
+    display: inline-block;
+
+    color: black;
+    background: #00ee00;
+    border: 4px solid white;
+    max-width: 25%;
+
+    padding: 20px;
+    font-size: 14pt;
+}
+
+
+/* Modal */
+#modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     transition: opacity 1s;
     opacity: 0;
+}
+
+#modal > * {
+    flex: 0 0 auto;
+}
+
+#modal-inner {
+    background: rgba(20, 20, 20, 0.99);;
+    max-width: 75vw;
+    max-height: 75vh;
+    width: 100%;
+
+    border-radius: 10px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#modal-inner > * {
+    flex: 1 1 auto;
+}
+
+.modal-submit {
+    padding: 20px;
+    text-align: center;
+    border-top: 2px dashed white;
 }

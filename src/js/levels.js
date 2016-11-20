@@ -59,8 +59,18 @@ function Level0() {
     this.steps = level_data[this.num].steps;
     this.progress = 0;
 
+    this.intro();
     this.set_up_level();
 }
+
+Level0.prototype.intro = function() {
+    show_modal(level_data[this.num].title,
+               level_data[this.num].desc_short,
+               level_data[this.num].desc_long,
+               'Let\'s Start!',
+               function(e) {game.level.set_up_level();}
+              );
+};
 
 Level0.prototype.set_up_level = function() {
     // Detach old keyboard bindings if any
@@ -130,7 +140,7 @@ Level0.prototype.win = function() {
 function insert_level_screen(num) {
     
     $('<div class="screen level" id="level'+num+'"><div class="container">' +
-      '  <div class="level-header">' + 
+      '  <div class="header">' + 
       '    <h1>' + level_data[num].title + '</h1>' +
       '    <p>' + level_data[num].desc_short + '</p>' +
       '  </div><div>' +
