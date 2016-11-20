@@ -261,7 +261,8 @@ Editor.prototype.get_character = function(x, y) {
  * returns: [x, y], the location of the next stop point.
  */
 Editor.prototype.find_stop_point = function(direction) {
-    var stop_chars = [' ', '?', '!', ''];
+    var stop_chars = [' ', '?', '!', '', '^', '@', '#', '=', '+', '_', '-', '`', '~',
+                      ')', '(', ',', '.', '<', '>', '/', '\\', '*'];
     var found_nonstop_char = false;
 
     var scanline = this.cy;

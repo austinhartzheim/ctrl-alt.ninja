@@ -52,15 +52,32 @@ KeyboardLayout.prototype.keypress = function(event) {
             
         } else {
 
-            switch (event.originalEvent.keyCode) {
-            case 37:  // Left Arrow
-                var next_stop = self.editor.find_stop_point(false);
-                self.editor.set_cursor(next_stop.x, next_stop.y);
-                break;
-            case 39:  // Right Arrow
-                var next_stop = self.editor.find_stop_point(true);
-                self.editor.set_cursor(next_stop.x, next_stop.y);
-                break;
+            if (event.originalEvent.charCode > 0) {
+
+                switch (event.originalEvent.charCode) {
+                case 102:  // M-f
+                    var next_stop = self.editor.find_stop_point(true);
+                    self.editor.set_cursor(next_stop.x, next_stop.y);
+                    break;
+                case 98:
+                    var next_stop = self.editor.find_stop_point(false);
+                    self.editor.set_cursor(next_stop.x, next_stop.y);
+                    break;
+                }
+
+            } else {
+
+                switch (event.originalEvent.keyCode) {
+                case 37:  // Left Arrow
+                    var next_stop = self.editor.find_stop_point(false);
+                    self.editor.set_cursor(next_stop.x, next_stop.y);
+                    break;
+                case 39:  // Right Arrow
+                    var next_stop = self.editor.find_stop_point(true);
+                    self.editor.set_cursor(next_stop.x, next_stop.y);
+                    break;
+                }
+
             }
             
         }
