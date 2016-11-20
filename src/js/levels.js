@@ -75,9 +75,53 @@ var level_data = [
                     x: 0,
                     y: 0
                 }
+            },
+            {
+                start: ['Ninja Commandments:', '1. If you see a ninja, ', '2.  do not sleep. They wait'],
+                goal: ['Ninja Commandments:', '1. If you see a ninja, they are not a ninja!', '2. Ninjas do not sleep. They wait...'],
+                pos: {
+                    mode: MODES.SET,
+                    x: 0,
+                    y: 0
+                }
+            }
+        ]
+    },
+
+    {
+        title: 'Revise/Edit',
+        desc_short: 'Draft up that email you\'ll be writing soon.',
+        desc_long: 'backward and forward one word; delete word forward and backward',
+        steps: [
+            {
+                start: ['Email Draft:', 'Dear Employer,', 'It is my greatest displeasure to inform you that I must resign,', 'due to my recent transformation into a keyboard shortcut ninja.', 'I hope you will understand.', 'Sincerely,', 'Ctrl-Alt Ninja'],
+                goal: ['Email Draft:', 'Dear Suckaa,', 'I\'m outtie.', 'Gotta do me now.', 'Could you write me a letter of rec??', 'Peace', ''],
+                pos: {
+                    mode: MODES.SET,
+                    x: 0,
+                    y: 0
+                }
+            }
+        ]
+    },
+
+    {
+        title: 'Haxx0r Ninja',
+        desc_short: 'Ninjas don\'t make n00bie mistakes.',
+        desc_long: 'C-k to kill line',
+        steps: [
+            {
+                start: ['if (var && 1)', 'count ++;', 'input = readInput();', ''],
+                goal: ['if (var)', 'Dear Suckaa,', 'I\'m outtie.', 'Gotta do me now.', 'Could you write me a letter of rec??', 'Peace', ''],
+                pos: {
+                    mode: MODES.SET,
+                    x: 0,
+                    y: 0
+                }
             }
         ]
     }
+
 ];
 
 function Level0() {
