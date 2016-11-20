@@ -325,8 +325,9 @@ Level1.prototype.win = function() {
                'You passed a level.',
                level_data[this.num].msg_win,
                'Continue',
-               function(e) {start_level_2()}
-              );
+               function(e) {
+                   start_level_2();
+               });
     // TODO: allow advancing to the next level
 };
 
@@ -435,7 +436,7 @@ Level2.prototype.win = function() {
                'You passed a level.',
                level_data[this.num].msg_win,
                'Continue',
-               function(e) {console.log('not implemented');}
+               function(e) {start_level_3();}
               );
     // TODO: allow advancing to the next level
 };
