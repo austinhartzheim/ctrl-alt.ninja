@@ -25,10 +25,14 @@ Editor.prototype.render = function() {
                 at_cursor = '&nbsp;';
             }
 
-            this.elm.append('<p>' + pre_cursor + '<u>' + at_cursor + '</u>' +
-                            post_cursor + '</p>');
+            this.elm.append('<div>' + pre_cursor + '<u>' + at_cursor + '</u>' +
+                            post_cursor + '</div>');
         } else {
-            this.elm.append("<p>" + this.data_buffer[i] + "</p>");
+            if (this.data_buffer[i] == '') {
+                this.elm.append('<br />');
+            } else {
+                this.elm.append("<div>" + this.data_buffer[i] + "</div>");
+            }
         }
     }
 };
