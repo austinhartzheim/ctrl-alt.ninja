@@ -106,6 +106,14 @@ Editor.prototype.move_cursor_home = function() {
 };
 
 /*
+ * Insert a tab as two spaces.
+ */
+Editor.prototype.type_tab = function() {
+    this.type_character(' ');
+    this.type_character(' ');
+}
+
+/*
  * Type a character.
  * c: the character to insert.
  */

@@ -44,6 +44,9 @@ KeyboardLayout.prototype.keypress = function(event) {
         case 8:   // Backspace
             self.editor.backspace();
             break; 
+        case 9:   // Tab
+            self.editor.type_tab();
+            break;
         case 13:  // Enter / New Line
             self.editor.type_newline();
             break;
