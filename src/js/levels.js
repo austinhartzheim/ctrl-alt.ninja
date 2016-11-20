@@ -33,6 +33,23 @@ var level_data = [
                 }
             }
         ]
+    },
+
+    {
+        title: 'Leaving Home',
+        desc_short: 'Don\'t be in such a rush.',
+        desc_long: 'Use ctrl+e to go to the end of a line. Press ctrl+a to go to the start of a line. The home and end keys can also be used.',
+        steps: [
+            {
+                start: ['What on earth am I going to do with this long line?'],
+                goal: ['What on earth am I going to do with this long line? Add text at the end!'],
+                pos: {
+                    mode: MODES.SET,
+                    x: 0,
+                    y: 0
+                }
+            }
+        ]
     }
 ];
 
