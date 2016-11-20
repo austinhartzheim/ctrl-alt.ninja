@@ -105,6 +105,45 @@ describe('test Editor', function() {
         expect(editor.cy).toBe(1);
     });
 
+    it('test newline at beginning of line', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['hello']);
+
+        editor.move_cursor(0, 0);
+        editor.type_newline();
+
+        expect(editor.data_buffer).toEqual(['', 'hello']);
+
+        expect(editor.cx).toBe(0);
+        expect(editor.cy).toBe(1);
+    });
+
+    it('test newline in middle of line', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['helloworld']);
+
+        editor.move_cursor(5, 0);
+        editor.type_newline();
+
+        expect(editor.data_buffer).toEqual(['hello', 'world']);
+
+        expect(editor.cx).toBe(0);
+        expect(editor.cy).toBe(1);
+    });
+
+    it('test newline at end of line', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['hello']);
+
+        editor.move_cursor(5, 0);
+        editor.type_newline();
+
+        expect(editor.data_buffer).toEqual(['hello', '']);
+
+        expect(editor.cx).toBe(0);
+        expect(editor.cy).toBe(1);
+    });
+
     it('test backspace', function() {
         var editor = new Editor(null);
         editor.set_data_buffer(['hello']);

@@ -124,7 +124,7 @@ Editor.prototype.type_newline = function() {
     var pre_cursor = this.data_buffer[this.cy].slice(0, this.cx);
     var post_cursor = this.data_buffer[this.cy].slice(this.cx);
     this.data_buffer[this.cy] = pre_cursor;
-    this.data_buffer.slice(this.cy + 1, 0, post_cursor);
+    this.data_buffer.splice(this.cy + 1, 0, post_cursor);
     
     // Move cursor to the start of the next line
     this.cx = 0;
