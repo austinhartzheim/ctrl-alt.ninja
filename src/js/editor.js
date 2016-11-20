@@ -50,6 +50,10 @@ Editor.prototype.set_data_buffer = function(data) {
     this.cx = Math.min(this.data_buffer[this.cy].length, this.cx);
 };
 
+Editor.prototype.get_cursor = function() {
+    return {x: this.cx, y: this.cy};
+};
+
 Editor.prototype.set_cursor = function(x, y) {
     if (y < 0 || y > this.get_line_count()) {
         throw "Cannot set cursor to a line that does not exist";
@@ -334,4 +338,35 @@ Editor.prototype.find_stop_point = function(direction) {
     }
     
     return [scanchar, scanline];
+};
+
+Editor.prototype.delete_line = function(line) {
+    this.data_buffer.pop(line);
+};
+
+/*
+ * Delete the range between r1 and r2 where r1 and r2 are objects
+ * containing integer fields x and y.
+ */
+Editor.prototype.delete_range = function(r1, r2) {
+    // If we are deleeting a range on the same line, handle it and return early
+    if (r1.y == r2.y) {
+        var line = this.get_line(r1.y);
+        this.data_buffer[r1.y] = line.slice(0, r1.x) + line.slice(r2.x + 1);
+        this.set_cursor(r1.x, r1.y);
+        return;
+    }
+
+    // Start by deleting any partial data on the last line
+    var last_line = this.get_line(r2.y);
+    this.data_buffer[r2.y] = last_line.slice(r2.x);
+
+    // Delete any lines between r2 and r1
+    for (var i = r2.y - 1; i > r1.y; i--) {
+        this.delete_line(i);
+    }
+
+    // Delete any partial data on the first line
+    var first_line = this.get_line(r1.y);
+    this.data_buffer[r1.y] = first_line.slice(0, r1.x);
 };

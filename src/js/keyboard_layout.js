@@ -68,6 +68,13 @@ KeyboardLayout.prototype.keypress = function(event) {
             } else {
 
                 switch (event.originalEvent.keyCode) {
+                case 8:  // Backspace
+                    self.editor.move_cursor(-1, 0);
+                    var next_stop = self.editor.find_stop_point(false);
+                    console.log('Deleting from', next_stop, self.editor.get_cursor());
+                    
+                    self.editor.delete_range(next_stop, self.editor.get_cursor());
+                    break;
                 case 37:  // Left Arrow
                     var next_stop = self.editor.find_stop_point(false);
                     self.editor.set_cursor(next_stop.x, next_stop.y);
