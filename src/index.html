@@ -21,7 +21,13 @@
         $(".hex").click(function() {
             $('html, body').animate({
                 scrollTop: $("#game-view").offset().top
-            }, 500);
+            }, 750);
+        });
+
+        $("#begin-button").click(function() {
+            $('html, body').animate({
+                scrollTop: $("#main-menu").offset().top
+            }, 750);
         });
 
         game = new Game();
@@ -31,17 +37,25 @@
     </script>
   </head>
   <body>
-    <div class="screen">
+    <div class="screen screen-splash">
       <div class="container">
         <div>
-          <h1>Ctrl-Alt.Ninja is Coming Soon!</h1>
-          <p>This game will be developed 2016-11-18 through 2016-11-20, so check back soon!</p>
-          <p>(◣_◢)</p>
+          <img id="logo" src="img/ninja.svg"/>
+          <h1>Ctrl-Alt.Ninja</h1>
+          <p class="slogan">Learn to type like a keybord ninja!</p>
+        </div>
+
+        <div>
+          <a id="begin-button" class="button" href="#">Begin!</a>
+        </div>
+
+        <div>
+          <p>Made with &#9829; by <a href="https://austinhartzheim.me/">Austin Hartzheim</a> and <a href="https://github.com/kmfischer3">Krissy Fischer</a>.</p>
         </div>
       </div>
     </div>
 
-    <div class="screen screen-menu">
+    <div class="screen screen-menu" id="main-menu">
       <div class="container">
         <div>
           <h1>Ctrl-Alt.Ninja</h1>
