@@ -17,8 +17,8 @@ var level_data = [
                   
         steps: [
             {
-                start: ['type here'],
-                match: ['int main() {'],
+                start: ['// start by editing this line to match the one above'],
+                match: ['// this is a typing game'],
                 pos: {
                     mode: MODES.SET,
                     x: 0,
@@ -26,15 +26,22 @@ var level_data = [
                 }
             },
             {
-                start: ['int main() {'],
-                match: ['int main() {', '  return 0;', '}'],
+                start: ['// this is a typing game'],
+                match: ['// this is a typing game', 'int main() {'],
                 pos: {
                     mode: MODES.KEEP
                 }
             },
             {
-                start: ['int main() {', '  return 0;', '}'],
-                match: ['#include <stdio.h>', '', 'int main() {', '  return 0;', '}'],
+                start: ['// this is a typing game', 'int main() {'],
+                match: ['// this is a typing game', 'int main() {', '  return 0;', '}'],
+                pos: {
+                    mode: MODES.KEEP
+                }
+            },
+            {
+                start: ['// this is a typing game', 'int main() {', '  return 0;', '}'],
+                match: ['// this is a typing game', 'int main() {', '  return 0;', '}'],
                 pos: {
                     mode: MODES.KEEP
                 }
@@ -157,6 +164,12 @@ Level0.prototype.win = function() {
     // TODO: allow advancing to level 2.
 };
 
+
+// Temporary hacks while we restructure the main game logic
+function start_level_0() {
+    game = new Game(Level0);
+    game.start();
+}
 
 
 function insert_level_screen(num) {

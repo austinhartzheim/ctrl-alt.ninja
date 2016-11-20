@@ -51,7 +51,7 @@ $(document).ready(function() {
             var elm_num = parseInt(this.id.slice(3));
 
             if (elm_num == 0) {
-                game = new Game(Level0);
+                start_level_0();
             } else if (elm_num == 1) {
                 console.log("Game object not created yet");
             }
