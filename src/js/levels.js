@@ -101,6 +101,7 @@ var level_data = [
         title: 'Haxx0r Ninja',
         desc_short: 'Ninjas don\'t make n00bie mistakes.',
         desc_long: 'Ctrl-k to kill line',
+        win_msg: '<h2>Congrats Ninja Coder!</h2><p>You "kill"-ed all the mistakes! Just like a real ninja</p>',
         steps: [
             {
                 start: ['if (var && 1)', '  count ++;', '  input = readInput();', 'else', '  count --;', '  input = readInput();'],
