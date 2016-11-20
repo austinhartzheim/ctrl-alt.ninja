@@ -90,8 +90,8 @@ var level_data = [
 
     {
         title: 'Revise/Edit',
-        desc_short: 'Draft up that email you\'ll be writing soon.',
-        desc_long: 'backward and forward one word; delete word forward and backward',
+        desc_short: 'Ninjas don\'t need jobs.',
+        desc_long: '<h2>Know your own strength</h2><p>Teleporting is fun, but sometimes a quick punch is all it takes. Jump shorter distances with these new shortcuts (and deliver a one-two punch to your boss).</p><p>Let the world know your strength!</p><h2>New Shortcuts!</h2><dl><dt>Alt+left arrow</dt><dd>Skip back one word.</dd><dt>Alt+right arrow</dt><dd>Skip forward on word</dd><dt>Alt+Backspace</dt><dd>Delete one word, backwards.</dd></dl>',
         steps: [
             {
                 start: ['Email Draft:', 'Dear Employer,', 'It is my greatest displeasure to inform you that I must resign,', 'due to my recent transformation into a keyboard shortcut ninja.', 'I hope you will understand.', 'Sincerely,', 'Ctrl-Alt Ninja'],
