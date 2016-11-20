@@ -33,7 +33,11 @@ body {
 .editor {
     text-align: left;
     font-family: monospace;
-    font-size: 14pt
+    font-size: 14pt;
+
+    background: #2b2b2b;
+    border-radius: 10px;
+    padding: 12px;
 }
 
 .level-header {
@@ -89,8 +93,4 @@ dl dt {
 }
 dl dd {
     margin-bottom: 4px;
-}
-
-.editor div {
-    transition: color 0.25s;
 }
