@@ -5,6 +5,11 @@
     margin-bottom: -50px;
     font-size: 26pt;
 }
+.hex .left,
+.hex .middle,
+.hex .right {
+    transition: background 0.5s, border-color 0.5s;
+}
 .hex .left {
     float: left;
     width: 0;
