@@ -5,7 +5,6 @@ body {
 
 .screen {
     height: 100vh;
-    text-align: center;
 
     display: flex;
     flex-direction: row;
@@ -14,7 +13,6 @@ body {
 
 .screen .container {
     flex: 0 0 auto;
-    text-align: center;
     min-width: 80ex;
 
     display: flex;
@@ -40,6 +38,7 @@ body {
 
 .level-header {
     border-bottom: 2px dashed white;
+    text-align: center;
 }
 
 .level-header p {
