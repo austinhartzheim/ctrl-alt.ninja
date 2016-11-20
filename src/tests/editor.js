@@ -294,4 +294,54 @@ describe('test Editor', function() {
         expect(editor1.equals(editor2)).toBe(false);
     });
 
+    it('test find stop point - forwards, same line', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['hello there world']);
+
+        expect(editor.find_stop_point(true)).toEqual([5, 0]);
+    });
+
+    it('test find stop point - forwards, end of line', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['hello there world']);
+        editor.set_cursor(14, 0);
+
+        expect(editor.find_stop_point(true)).toEqual([17, 0]);
+
+        editor.set_data_buffer(['hello']);
+        editor.set_cursor(0, 0);
+
+        expect(editor.find_stop_point(true)).toEqual([5, 0]);
+    });
+
+    it('test find stop point - forwards, end of file', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['hello']);
+
+        expect(editor.find_stop_point(true)).toEqual([5, 0]);
+    });
+
+    it('test find stop point - forwards, next line', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['!!!', 'aaa!']);
+
+        expect(editor.find_stop_point(true)).toEqual([3, 1]);
+    });
+
+    it('test find stop_point - backwards, same line', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['!abc']);
+        editor.set_cursor(3, 0);
+
+        expect(editor.find_stop_point(false)).toEqual([1, 0]);
+    });
+
+    it('test find stop point - backwards, previous line', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['a!bc', '!a']);
+        editor.set_cursor(1, 1);
+
+        expect(editor.find_stop_point(false)).toEqual([2, 0]);
+    });
+
 });
