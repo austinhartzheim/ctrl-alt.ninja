@@ -113,6 +113,14 @@ Editor.prototype.move_cursor_home = function() {
 };
 
 /*
+ * Insert a tab as two spaces.
+ */
+Editor.prototype.type_tab = function() {
+    this.type_character(' ');
+    this.type_character(' ');
+}
+
+/*
  * Type a character.
  * c: the character to insert.
  */
@@ -161,9 +169,15 @@ Editor.prototype.backspace = function() {
             // Nothing to do; backspace at start of file
             return;
         }
-        // TODO: handle line merge
-        //var post_cursor = this.data_buffer[this.cy].slice(this.cx);
-        //console.log(post_cursor);
+        // Handle line merge
+        var index = this.get_line_length(this.cy-1);
+        
+        this.data_buffer[this.cy-1] += this.data_buffer[this.cy];
+        this.data_buffer.splice(this.cy, 1);
+
+        this.cx = index;
+        this.cy --;
+
         return;
     }
 
