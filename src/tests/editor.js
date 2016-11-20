@@ -144,6 +144,28 @@ describe('test Editor', function() {
         expect(editor.cy).toBe(1);
     });
 
+    it('several newlines', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['hello']);
+
+        editor.move_cursor(1, 0);
+        editor.type_newline();
+
+        editor.move_cursor(1, 0);
+        editor.type_newline();
+
+        editor.move_cursor(1, 0);
+        editor.type_newline();
+
+        editor.move_cursor(1, 0);
+        editor.type_newline();
+
+        expect(editor.data_buffer).toEqual(['h', 'e', 'l', 'l', 'o']);
+
+        expect(editor.cx).toBe(0);
+        expect(editor.cy).toBe(4);
+    });
+
     it('test backspace', function() {
         var editor = new Editor(null);
         editor.set_data_buffer(['hello']);
