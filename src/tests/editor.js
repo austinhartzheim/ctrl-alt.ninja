@@ -166,23 +166,6 @@ describe('test Editor', function() {
         expect(editor.cy).toBe(4);
     });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     it('test tab at beginning of line', function() {
         var editor = new Editor(null);
         editor.set_data_buffer(['hello']);
@@ -221,6 +204,36 @@ describe('test Editor', function() {
         expect(editor.cy).toBe(0);
     });
 
+    it('test kill at beginning of line', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['hello']);
+
+        editor.move_cursor(0, 0);
+        editor.kill_line();
+
+        expect(editor.data_buffer).toEqual(['']);
+    });
+
+    it('test kill in middle of line', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['hello world']);
+
+        editor.move_cursor(5, 0);
+        editor.kill_line();
+
+        expect(editor.data_buffer).toEqual(['hello']);
+    });
+
+    it('test kill at end of line', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['hello']);
+
+        editor.move_cursor(5, 0);
+        editor.kill_line();
+
+        expect(editor.data_buffer).toEqual(['hello']);
+    });
+
     it('several tabs', function() {
         var editor = new Editor(null);
         editor.set_data_buffer(['hello']);
@@ -235,22 +248,6 @@ describe('test Editor', function() {
         expect(editor.cx).toBe(7);
         expect(editor.cy).toBe(0);
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     it('test backspace', function() {
         var editor = new Editor(null);
