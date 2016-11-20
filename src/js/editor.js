@@ -17,9 +17,15 @@ Editor.prototype.render = function() {
     this.elm.empty();
     for (var i = 0; i < this.data_buffer.length; i++) {
         if (this.display_cursor && this.cy == i) {
-            var pre_cursor = this.data_buffer[i].slice(0, this.cx);
-            var at_cursor = this.data_buffer[i].slice(this.cx, this.cx + 1);
-            var post_cursor = this.data_buffer[i].slice(this.cx + 1);
+            var pre_cursor = utils.string_escape(
+                this.data_buffer[i].slice(0, this.cx)
+            );
+            var at_cursor = utils.string_escape(
+                this.data_buffer[i].slice(this.cx, this.cx + 1)
+            );
+            var post_cursor = utils.string_escape(
+                this.data_buffer[i].slice(this.cx + 1)
+            );
 
             if (at_cursor == ' ' || at_cursor == '') {
                 at_cursor = '&nbsp;';
@@ -31,7 +37,8 @@ Editor.prototype.render = function() {
             if (this.data_buffer[i] == '') {
                 this.elm.append('<br />');
             } else {
-                this.elm.append("<div>" + this.data_buffer[i] + "</div>");
+                var str = utils.string_escape(this.data_buffer[i]);
+                this.elm.append("<div>" + str + "</div>");
             }
         }
     }

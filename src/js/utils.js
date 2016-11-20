@@ -1,4 +1,12 @@
 var utils = {};
+var escape_map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+    '/': '&#x2F;'
+};
 
 /*
  * Insert a string into the middle of another string.
@@ -12,4 +20,10 @@ utils.string_insert = function(s1, pos, s2) {
 
 utils.string_delete_char = function(str, pos) {
     return str.slice(0, pos) + str.slice(pos + 1);
+};
+
+utils.string_escape = function(str) {
+    return String(str).replace(/[&<>"'\/]/g, function(s) {
+        return escape_map[s];
+    });
 };

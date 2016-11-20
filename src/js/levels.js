@@ -6,21 +6,21 @@ var MODES = {
 var level_data = {
     'level1': [
         {start: ['type here'],
-         match: ['hello world'],
+         match: ['int main() {'],
          pos: {
              mode: MODES.SET,
              x: 0,
              y: 0
          }
         },
-        {start: ['hello world'],
-         match: ['hello there world'],
+        {start: ['int main() {'],
+         match: ['int main() {', '  return 0;', '}'],
          pos: {
              mode: MODES.KEEP
          }
         },
-        {start: ['hello there world'],
-         match: ['hello there world', 'how are you'],
+        {start: ['int main() {', '  return 0;', '}'],
+         match: ['#include <stdio.h>', '', 'int main() {', '  return 0;', '}'],
          pos: {
              mode: MODES.KEEP
          }
@@ -32,6 +32,8 @@ function Level1() {
     this.name = 'level1';
     this.progress = 0;
 
+    $('#level-title').text('Introduction');
+    $('#level-desc').text('Learn how to play.');
     this.set_up_level();
 }
 
