@@ -244,7 +244,7 @@ describe('test Editor', function() {
         expect(editor.data_buffer).toEqual(['hello']);
     });
 
-    it('test kill at end of line', function() {
+    it('test kill at end of file', function() {
         var editor = new Editor(null);
         editor.set_data_buffer(['hello']);
 
@@ -252,6 +252,26 @@ describe('test Editor', function() {
         editor.kill_line();
 
         expect(editor.data_buffer).toEqual(['hello']);
+    });
+
+    it('test kill at end of file', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['hello', 'world']);
+
+        editor.move_cursor(5, 0);
+        editor.kill_line();
+
+        expect(editor.data_buffer).toEqual(['helloworld']);
+    });
+
+    it('test kill on empty line', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['hello', '', 'world']);
+
+        editor.move_cursor(0, 1);
+        editor.kill_line();
+
+        expect(editor.data_buffer).toEqual(['hello', 'world']);
     });
 
     it('several tabs', function() {
