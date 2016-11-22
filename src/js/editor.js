@@ -73,14 +73,10 @@ Editor.prototype.render = function() {
         }
     }
 
-    if (this.diff) {
-        for ( ; i < this.diff_target.get_line_count(); i++) {
-            this.elm.append($('<div/>',
-                              {
-                                  html: '&#8230;',
-                                  css: {color: 'red'}
-                              }));
-        }
+    if (this.diff && i < this.diff_target.get_line_count()) {
+        var num_missing_lines = this.diff_target.get_line_count() - i;
+        $('<div/>', {text: 'Missing ' + num_missing_lines + ' lines.',
+                     css: {color: 'red', fontSize: '8pt'}}).appendTo(this.elm);
     }
 };
 
