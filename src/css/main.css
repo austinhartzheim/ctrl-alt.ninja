@@ -130,7 +130,7 @@ dl dd {
 
 
 /* Modal */
-#modal {
+.modal {
     position: fixed;
     top: 0; left: 0;
     width: 100vw;
@@ -140,16 +140,13 @@ dl dd {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    transition: opacity 1s;
-    opacity: 0;
 }
 
-#modal > * {
+.modal > * {
     flex: 0 0 auto;
 }
 
-#modal-inner {
+.modal-inner {
     background: rgba(20, 20, 20, 0.99);;
     max-width: 75vw;
     max-height: 75vh;
@@ -163,11 +160,11 @@ dl dd {
     justify-content: space-around;
 }
 
-#modal-inner > * {
+.modal-inner > * {
     flex: 1 1 auto;
 }
 
-#modal-desc-long {
+.modal-desc-long {
     padding: 20px;
 }
 

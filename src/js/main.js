@@ -9,7 +9,7 @@ function Game(level) {
 }
 
 Game.prototype.start = function() {
-    this.level.start();
+    this.level.intro();
     setTimeout(function() {game.loop();}, this.loop_interval);
 };
 
@@ -59,8 +59,6 @@ $(document).ready(function() {
             } else if (elm_num == 3) {
                 start_level_3();
             }
-
-            // game.start();
         });
 
 });

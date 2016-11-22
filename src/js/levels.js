@@ -132,26 +132,30 @@ function Level0() {
     this.steps = level_data[this.num].steps;
     this.progress = 0;
 
-    this.intro();
-    this.set_up_level();
+    this.started = false;
 }
 
-Level0.prototype.start = function() {
-    $('html, body').animate({
-        scrollTop: $("#level0").offset().top
-    }, 750, function() {
-        console.log(game);
-        game.level.intro();
-    });
-};
-
 Level0.prototype.intro = function() {
+    $('html').animate({
+        scrollTop: $('#level' + this.num).offset().top
+    }, {
+        duration: 1000,
+        queue: true
+    });
+
     show_modal(level_data[this.num].title,
                level_data[this.num].desc_short,
                level_data[this.num].desc_long,
                'Let\'s Start!',
-               function(e) {game.level.set_up_level();}
+               function(e) {
+                   game.level.start();
+               }
               );
+};
+
+Level0.prototype.start = function() {
+    this.set_up_level();
+    this.started = true;
 };
 
 Level0.prototype.set_up_level = function() {
@@ -204,6 +208,10 @@ Level0.prototype.set_up_level = function() {
 };
 
 Level0.prototype.loop = function() {
+    if (!this.started) {
+        return;
+    }
+    
     if (this.display.equals(this.editor)) {
         this.progress++;
         this.set_up_level();
@@ -240,24 +248,29 @@ function Level1() {
     this.steps = level_data[this.num].steps;
     this.progress = 0;
 
-    this.intro();
-    this.set_up_level();
+    this.started = false;
 }
 
 Level1.prototype.start = function() {
-    $('html, body').animate({
-        scrollTop: $("#level1").offset().top
-    }, 750, function() {
-        game.level.intro();
-    });
+    this.set_up_level();
+    this.started = true;
 };
 
 Level1.prototype.intro = function() {
+    $('html').animate({
+        scrollTop: $('#level' + this.num).offset().top
+    }, {
+        duration: 1000,
+        queue: true
+    });
+
     show_modal(level_data[this.num].title,
                level_data[this.num].desc_short,
                level_data[this.num].desc_long,
                'Let\'s Start!',
-               function(e) {game.level.set_up_level();}
+               function(e) {
+                   game.level.start();
+               }
               );
 };
 
@@ -293,7 +306,6 @@ Level1.prototype.set_up_level = function() {
     this.editor = new Editor($('#level1-editor'), true);
 
     // Initialize editor states
-    console.log(this.display);
     this.display.set_data_buffer(
         this.steps[this.progress]['match']
     );
@@ -312,6 +324,10 @@ Level1.prototype.set_up_level = function() {
 };
 
 Level1.prototype.loop = function() {
+    if (!this.started) {
+        return;
+    }
+    
     if (this.display.equals(this.editor)) {
         this.progress++;
         this.set_up_level();
@@ -329,7 +345,6 @@ Level1.prototype.win = function() {
                function(e) {
                    start_level_2();
                });
-    // TODO: allow advancing to the next level
 };
 
 
@@ -351,24 +366,29 @@ function Level2() {
     this.steps = level_data[this.num].steps;
     this.progress = 0;
 
-    this.intro();
-    this.set_up_level();
+    this.started = false;
 }
 
 Level2.prototype.start = function() {
-    $('html, body').animate({
-        scrollTop: $("#level2").offset().top
-    }, 750, function() {
-        game.level.intro();
-    });
+    this.set_up_level();
+    this.started = true;
 };
 
 Level2.prototype.intro = function() {
+    $('html').animate({
+        scrollTop: $('#level' + this.num).offset().top
+    }, {
+        duration: 1000,
+        queue: true
+    });
+
     show_modal(level_data[this.num].title,
                level_data[this.num].desc_short,
                level_data[this.num].desc_long,
                'Let\'s Start!',
-               function(e) {game.level.set_up_level();}
+               function(e) {
+                   game.level.start();
+               }
               );
 };
 
@@ -404,7 +424,6 @@ Level2.prototype.set_up_level = function() {
     this.editor = new Editor($('#level2-editor'), true);
 
     // Initialize editor states
-    console.log(this.display);
     this.display.set_data_buffer(
         this.steps[this.progress]['match']
     );
@@ -423,6 +442,10 @@ Level2.prototype.set_up_level = function() {
 };
 
 Level2.prototype.loop = function() {
+    if (!this.started) {
+        return;
+    }
+    
     if (this.display.equals(this.editor)) {
         this.progress++;
         this.set_up_level();
@@ -437,9 +460,9 @@ Level2.prototype.win = function() {
                'You passed a level.',
                level_data[this.num].msg_win,
                'Continue',
-               function(e) {start_level_3();}
-              );
-    // TODO: allow advancing to the next level
+               function(e) {
+                   start_level_3();
+               });
 };
 
 
@@ -461,24 +484,29 @@ function Level3() {
     this.steps = level_data[this.num].steps;
     this.progress = 0;
 
-    this.intro();
-    this.set_up_level();
+    this.started = false;
 }
 
 Level3.prototype.start = function() {
-    $('html, body').animate({
-        scrollTop: $("#level3").offset().top
-    }, 750, function() {
-        game.level.intro();
-    });
+    this.set_up_level();
+    this.started = true;
 };
 
 Level3.prototype.intro = function() {
+    $('html').animate({
+        scrollTop: $('#level' + this.num).offset().top
+    }, {
+        duration: 1000,
+        queue: true
+    });
+
     show_modal(level_data[this.num].title,
                level_data[this.num].desc_short,
                level_data[this.num].desc_long,
                'Let\'s Start!',
-               function(e) {game.level.set_up_level();}
+               function(e) {
+                   game.level.start();
+               }
               );
 };
 
@@ -514,7 +542,6 @@ Level3.prototype.set_up_level = function() {
     this.editor = new Editor($('#level3-editor'), true);
 
     // Initialize editor states
-    console.log(this.display);
     this.display.set_data_buffer(
         this.steps[this.progress]['match']
     );
@@ -533,6 +560,10 @@ Level3.prototype.set_up_level = function() {
 };
 
 Level3.prototype.loop = function() {
+    if (!this.started) {
+        return;
+    }
+    
     if (this.display.equals(this.editor)) {
         this.progress++;
         this.set_up_level();
@@ -547,9 +578,12 @@ Level3.prototype.win = function() {
                'You passed a level.',
                level_data[this.num].msg_win,
                'Continue',
-               function(e) {console.log('not implemented');}
+               function(e) {
+                   $('html, body').animate({
+                       scrollTop: $("#main-menu").offset().top
+                   }, 750);
+               }
               );
-    // TODO: allow advancing to the next level
 };
 
 
@@ -584,7 +618,6 @@ function insert_level_screen(num) {
 
 function insert_all_levels() {
     for (var i = 0; i < level_data.length; i++) {
-        console.log('inserting level', i);
         insert_level_screen(i);
     }
 }
