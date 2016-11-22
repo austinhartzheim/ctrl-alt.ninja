@@ -12,6 +12,7 @@ var JS_LIBS_BLOB = 'src/js/libs/*';
 var CSS_BLOB = 'src/css/*.css';
 var HTML_BLOB = 'src/*.html';
 var IMG_BLOB = 'src/img/*';
+var FONT_BLOB = ['src/fonts/*', 'src/fonts/*/*'];
 var BUILD_BLOBS = ['build/*', 'build/*/*'];
 
 gulp.task('default', function() {
@@ -50,7 +51,13 @@ gulp.task('build_img', function() {
         .pipe(gulp.dest('./build/img/'));
 });
 
-gulp.task('build', ['build_html', 'build_js', 'build_js_libs', 'build_css', 'build_img']);
+gulp.task('build_fonts', function() {
+    gulp.src(FONT_BLOB)
+        .pipe(gulp.dest('./build/fonts/'));
+});
+
+gulp.task('build', ['build_html', 'build_js', 'build_js_libs', 'build_css',
+                    'build_img', 'build_fonts']);
 
 gulp.task('serve', function() {
     browserSync({
