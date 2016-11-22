@@ -1,14 +1,18 @@
 var game;
 
-function Game(level) {
-    this.level = new level();
+
+function Game() {
+    this.level = null;
 
     this.animation_frame_request = null;
     this.loop_interval = 50;
     this.stop_running = false;
+
+    this.level_number = 0;
 }
 
 Game.prototype.start = function() {
+    this.stop_running = false;
     this.level.intro();
     setTimeout(function() {game.loop();}, this.loop_interval);
 };
@@ -24,8 +28,21 @@ Game.prototype.loop = function(timestamp) {
     }
 };
 
+Game.prototype.start_next_level = function() {
+    this.level_number++;
+    this.start_level(this.level_number);
+};
+
+Game.prototype.start_level = function(level_number) {
+    this.level_number = level_number;
+    this.level = new Level(this.level_number);
+    this.start();
+};
+
 
 $(document).ready(function() {
+    game = new Game();
+    
     $("#modal").hide();
     insert_all_levels();
 
@@ -49,16 +66,7 @@ $(document).ready(function() {
         .click(function() {
             // Total hack to get hex number
             var elm_num = parseInt(this.id.slice(3));
-
-            if (elm_num == 0) {
-                start_level_0();
-            } else if (elm_num == 1) {
-                start_level_1();
-            } else if (elm_num == 2) {
-                start_level_2();
-            } else if (elm_num == 3) {
-                start_level_3();
-            }
+            game.start_level(elm_num);
         });
 
 });
