@@ -13,6 +13,12 @@ function Editor(elm, display_cursor) {
     self.diff_target = null;
     
     this.data_buffer = [];
+
+    this.settings = {
+        // Should pressing "down" on the last line of a file cause
+        // moving to the end of the file?
+        down_on_last_line_should_move_to_eof: true
+    };
 }
 
 Editor.prototype.enable_diffing = function(diff_target) {
@@ -22,7 +28,9 @@ Editor.prototype.enable_diffing = function(diff_target) {
 
 Editor.prototype.render = function() {
     this.elm.empty();
-    for (var i = 0; i < this.data_buffer.length; i++) {
+
+    var i;
+    for (i = 0; i < this.data_buffer.length; i++) {
         if (this.display_cursor && this.cy == i) {
             var pre_cursor = utils.string_escape(
                 this.data_buffer[i].slice(0, this.cx)
@@ -62,6 +70,16 @@ Editor.prototype.render = function() {
                 }
                 this.elm.append(line);
             }
+        }
+    }
+
+    if (this.diff) {
+        for ( ; i < this.diff_target.get_line_count(); i++) {
+            this.elm.append($('<div/>',
+                              {
+                                  html: '&#8230;',
+                                  css: {color: 'red'}
+                              }));
         }
     }
 };
@@ -117,6 +135,30 @@ Editor.prototype.move_cursor = function(xd, yd) {
     this.cy = Math.max(0, Math.min(this.get_line_count() - 1, this.cy));
 
     this.cx = Math.min(this.cx, this.get_line_length(this.cy));
+};
+
+Editor.prototype.down = function() {
+    // If we are on the last line, check the setting to see if we should
+    //   move to EOF.
+    if (this.cy == this.get_line_count() - 1 &&
+        this.settings.down_on_last_line_should_move_to_eof) {
+        this.cx = this.get_line_length(this.cy);
+        return;
+    }
+    
+    this.move_cursor(0, 1);
+};
+
+Editor.prototype.up = function() {
+    this.move_cursor(0, -1);
+};
+
+Editor.prototype.right = function() {
+    this.move_cursor(1, 0);
+};
+
+Editor.prototype.left = function() {
+    this.move_cursor(-1, 0);
 };
 
 /*

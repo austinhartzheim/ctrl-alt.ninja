@@ -45,6 +45,17 @@ describe('test Editor', function() {
         expect(editor.cy).toBe(0);
     });
 
+    it('move cursor down on last line of file moves to EOF', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['', 'abcdef']);
+        editor.set_cursor(1,1);
+        editor.settings.down_on_last_line_should_move_to_eof = true;
+
+        editor.down();
+        expect(editor.cx).toBe(6);
+        expect(editor.cy).toBe(1);
+    });
+
     it('get line count', function() {
         var editor = new Editor(null);
         editor.set_data_buffer(['abc', 'def']);

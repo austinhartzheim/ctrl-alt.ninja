@@ -118,16 +118,16 @@ KeyboardLayout.prototype.keypress = function(event) {
             self.editor.move_cursor_home();
             break;
         case 37:  // Left Arrow
-            self.editor.move_cursor(-1, 0);
+            self.editor.left();
             break;
         case 38:  // Up Arrow
-            self.editor.move_cursor(0, -1);
+            self.editor.up();
             break;
         case 39:  // Right Arrow
-            self.editor.move_cursor(1, 0);
+            self.editor.right();
             break;
         case 40:  // Down Arrow
-            self.editor.move_cursor(0, 1);
+            self.editor.down();
             break;
         case 46:  // Delete
             self.editor.delete();
