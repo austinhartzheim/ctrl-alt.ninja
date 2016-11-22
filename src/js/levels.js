@@ -63,8 +63,8 @@ var level_data = [
         msg_win: '<h2>You did it!</h2><p>Can you feel the ninja power starting to take root in your fingers?</p>',
         steps: [
             {
-                start: ['What on earth am I going to do with this long line?'],
-                match: ['What on earth am I going to do with this long line? Add text at the end!'],
+                start: ['If only there was an easier way to reach the end...'],
+                match: ['If only there was an easier way to reach the end... Like pressing Ctrl+e!'],
                 pos: {
                     mode: MODES.SET,
                     x: 0,
@@ -72,8 +72,14 @@ var level_data = [
                 }
             },
             {
-                start: ['Ninja Commandments:', '1. If you see a ninja, ', '2.  do not sleep. They wait'],
-                match: ['Ninja Commandments:', '1. If you see a ninja, they are not a ninja!', '2. Ninjas do not sleep. They wait...'],
+                start: ['Ninja Facts:',
+                        '1. If you see a ninja, ',
+                        '2.  do not sleep. They wait',
+                        '3. Only a ninja can sneak up on another'],
+                match: ['Ninja Facts:',
+                        '1. If you see a ninja, they are not a ninja.',
+                        '2. Ninjas do not sleep. They wait...',
+                        '3. Only a ninja can sneak up on another ninja.'],
                 pos: {
                     mode: MODES.SET,
                     x: 0,
@@ -84,10 +90,62 @@ var level_data = [
     },
 
     {
+        title: 'Fixing Bugs',
+        desc_short: 'Ninjas don\'t fix bugs; they fix you.',
+        desc_long: '<h2>Know your own strength</h2><p>Teleporting is fun, but sometimes a quick punch is all it takes. Jump shorter distances with these new shortcuts.</p><p>Let the world know your strength!</p><h2>New Shortcuts!</h2><dl><dt>Alt+left arrow</dt><dd>Skip back one word.</dd><dt>Alt+right arrow</dt><dd>Skip forward on word</dd><dt>Alt+Backspace</dt><dd>Delete one word, backwards.</dd></dl>',
+        msg_win: '<h2>You did it!</h2><p>The bugs have been fixed. Now it\'s time to find the person responsible...</p>',
+        steps:[
+            {
+                start: [
+                    'def get_sensor_data():',
+                    '    // TODO: fix insecure eval()',
+                    '    sensor_data = eval(requests.get(URL).text)',
+                    '    ',
+                    '    if sensor_data[\'temperature\'] < 60:',
+                    '        enable_heater();'
+                ],
+                match: [
+                    'def get_sensor_data():',
+                    '    // TODO: fix insecure eval()',
+                    '    sensor_data = json.loads(requests.get(URL).text)',
+                    '    ',
+                    '    if sensor_data[\'temperature\'] < 68:',
+                    '        enable_heater();'
+                ],
+                pos: {
+                    mode: MODES.SET,
+                    x: 0,
+                    y: 0
+                }
+            },
+            {
+                start: [
+                    'def get_sensor_data():',
+                    '    // TODO: fix insecure eval()',
+                    '    sensor_data = json.loads(requests.get(URL).text)',
+                    '    ',
+                    '    if sensor_data[\'temperature\'] < 68:',
+                    '        enable_heater();'
+                ],
+                match: [
+                    'def get_sensor_data():',
+                    '    sensor_data = json.loads(requests.get(URL).text)',
+                    '    ',
+                    '    if sensor_data[\'temperature\'] < 68:',
+                    '        enable_heater();'
+                ],
+                pos: {
+                    mode: MODES.KEEP
+                }
+            }
+        ]
+    },
+
+    {
         title: 'Revise/Edit',
         desc_short: 'Ninjas don\'t need jobs.',
-        desc_long: '<h2>Know your own strength</h2><p>Teleporting is fun, but sometimes a quick punch is all it takes. Jump shorter distances with these new shortcuts (and deliver a one-two punch to your boss).</p><p>Let the world know your strength!</p><h2>New Shortcuts!</h2><dl><dt>Alt+left arrow</dt><dd>Skip back one word.</dd><dt>Alt+right arrow</dt><dd>Skip forward on word</dd><dt>Alt+Backspace</dt><dd>Delete one word, backwards.</dd></dl>',
-        win_msg: '<h2>How did that feel?</h2><p>Your boss is lucky you let him off easy. You\'re the boss now!</p>',
+        desc_long: '<h2>Independence is key</h2><p>True ninjas cannot be beholden to anyone. That is why this next lesson will be about showing people who is boss.</p>',
+        msg_win: '<h2>How did that feel?</h2><p>Your boss is lucky you let him off easy. You\'re the boss now!</p>',
         steps: [
             {
                 start: ['Email Draft:', 'Dear Employer,', 'It is my greatest displeasure to inform you that I must resign,', 'due to my recent transformation into a keyboard shortcut ninja.', 'I hope you will understand.', 'Sincerely,', 'Ctrl-Alt Ninja'],
@@ -105,7 +163,7 @@ var level_data = [
         title: 'Haxx0r Ninja',
         desc_short: 'Ninjas don\'t make n00bie mistakes.',
         desc_long: 'Ctrl-k to kill line',
-        win_msg: '<h2>Congrats Ninja Coder!</h2><p>You "kill"-ed all the mistakes! Just like a real ninja</p>',
+        msg_win: '<h2>Congrats Ninja Coder!</h2><p>You "kill"-ed all the mistakes! Just like a real ninja</p>',
         steps: [
             {
                 start: ['if (var && 1)', '  count ++;', '  input = readInput();', 'else', '  count --;', '  input = readInput();'],
@@ -139,7 +197,6 @@ function Level(number) {
     this.number = number;
     this.progress = 0;
     this.started = false;
-    console.log(this.number);
     this.data = level_data[this.number];
     this.steps = this.data.steps;
 }
@@ -228,6 +285,7 @@ Level.prototype.win = function() {
     this.editor.render();  // Render one more time to reset coloring
     game.stop();
 
+    // If this is the last level, display a "game complete" message.
     if (this.number == level_data.length - 1) {
         show_modal('Congratulations!', 'You passed all levels!',
                    level_data[this.number].msg_win, 'Continue',
@@ -241,6 +299,8 @@ Level.prototype.win = function() {
         return;
     }
 
+    // Display a message about passing the level. Allow moving on to
+    // the next level.
     show_modal('Congratulations!',
                'You passed a level.',
                level_data[this.number].msg_win,
