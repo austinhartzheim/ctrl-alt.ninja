@@ -17,31 +17,34 @@ var level_data = [
                   
         steps: [
             {
-                start: ['// start by editing this line to match the one above'],
-                match: ['// this is a typing game'],
+                start: ['// use your keyboard; make the text boxes match', ''],
+                match: ['// use your keyboard; make the text boxes match', 'This is a typing game.'],
                 pos: {
                     mode: MODES.SET,
                     x: 0,
-                    y: 0
+                    y: 1
                 }
             },
             {
-                start: ['// this is a typing game'],
-                match: ['// this is a typing game', 'int main() {'],
+                start: ['// use your keyboard; make the text boxes match', 'This is a typing game.'],
+                match: ['// use your keyboard; make the text boxes match', 'This is a typing game.', 'New lines will appear with more text to type.'],
                 pos: {
                     mode: MODES.KEEP
                 }
             },
             {
-                start: ['// this is a typing game', 'int main() {'],
-                match: ['// this is a typing game', 'int main() {', '  return 0;', '}'],
+                start: ['// use your keyboard; make the text boxes match', 'This is a typing game.', 'New lines will appear with more text to type.'],
+                match: ['// use your keyboard; make the text boxes match', 'This is a typing game for ninjas.', 'New lines will appear with more text to type.',
+                        'And sometimes you will have to make edits too.'],
                 pos: {
                     mode: MODES.KEEP
                 }
             },
             {
-                start: ['// this is a typing game', 'int main() {', '  return 0;', '}'],
-                match: ['// this is a typing game', 'int main() {', '  return 0;', '}'],
+                start: ['// use your keyboard; make the text boxes match', 'This is a typing game for ninjas.', 'New lines will appear with more text to type.',
+                        'And sometimes you will have to make edits too.'],
+                match: ['// use your keyboard; make the text boxes match', 'This is a typing game for ninjas.', 'New lines will appear with more text to type.',
+                        'And sometimes you will have to make edits too.', 'Now I have the hang of this.'],
                 pos: {
                     mode: MODES.KEEP
                 }
@@ -53,7 +56,8 @@ var level_data = [
         title: 'Teleporting Home',
         desc_short: 'They won\'t see you coming.',
         desc_long: ('<h2>Let\'s start with the basics</h2>' +
-                    '<p>The first skill every ninja-in-training learns is how to quickly move the cursor to the start and end of a line. With one keypress you can easily dazzle your foes and appear to teleport through them before landing your final blow.</p>' +
+                    '<p>The first skill every ninja-in-training learns is how to quickly move the cursor to the start and end of a line.' +
+                    'With one keypress you can easily dazzle your foes and appear to teleport through them before landing your final blow.</p>' +
                     '<p>(Of course, by the time you finish your training, they won\'t be able to see you at all!)</p>' +
                     '<h2>New shortcuts!</h2><dl><dt>Ctrl+a</dt><dd>Skip to the start of a link.</dd><dt>Ctrl+e</dt><dd>Skip to the end of a line.</dd><dt>Alt+&lt;</dt><dd>Skip to the start of the file.</dd><dt>Alt+&gt;</dt><dd>Skip to the end of the file.</dd></dl>'),
         msg_win: '<h2>You did it!</h2><p>Can you feel the ninja power starting to take root in your fingers?</p>',
