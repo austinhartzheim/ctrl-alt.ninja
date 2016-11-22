@@ -364,4 +364,31 @@ describe('test Editor', function() {
         expect(editor.find_stop_point(false)).toEqual({x: 2, y: 0});
     });
 
+    it('test delete - end of file', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['abc', 'def', 'ghi']);
+        editor.set_cursor(3, 2);
+
+        editor.delete();
+        expect(editor.data_buffer).toEqual(['abc', 'def', 'ghi']);
+    });
+
+    it('test delete - simple case', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['abc', 'def', 'ghi']);
+        editor.set_cursor(1, 1);
+
+        editor.delete();
+        expect(editor.data_buffer).toEqual(['abc', 'df', 'ghi']);
+    });
+
+    it('test delete - end of line', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['abc', 'def', 'ghi']);
+        editor.set_cursor(3, 0);
+
+        editor.delete();
+        expect(editor.data_buffer).toEqual(['abcdef', 'ghi']);
+    });
+
 });

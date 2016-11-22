@@ -129,6 +129,9 @@ KeyboardLayout.prototype.keypress = function(event) {
         case 40:  // Down Arrow
             self.editor.move_cursor(0, 1);
             break;
+        case 46:  // Delete
+            self.editor.delete();
+            break;
         }
     }
 

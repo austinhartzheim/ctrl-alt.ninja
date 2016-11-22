@@ -392,3 +392,24 @@ Editor.prototype.delete_range = function(r1, r2) {
     var first_line = this.get_line(r1.y);
     this.data_buffer[r1.y] = first_line.slice(0, r1.x);
 };
+
+/*
+ * Execute the delete opeeration at the current cursor position.
+ */
+Editor.prototype.delete = function() {
+    // Check if we need to merge lines
+    if (this.cx == this.get_line_length(this.cy)) {
+        // Check if we are at the end of the file
+        if (this.cy == this.get_line_count() - 1) {
+            return;  // Do nothing
+        }
+
+        this.data_buffer[this.cy] += this.data_buffer[this.cy + 1];
+        this.data_buffer.splice(this.cy + 1, 1);
+        return;
+    }
+
+    // Delete the current character
+    this.data_buffer[this.cy] = utils.string_delete_char(this.data_buffer[this.cy], this.cx);
+
+};
