@@ -1,4 +1,4 @@
-# Ctrl-Alt.Minja
+# Ctrl-Alt.Ninja
 Become a keyboard ninja.
 
 Play now at [https://ctrl-alt.ninja/](https://ctrl-alt.ninja/).
