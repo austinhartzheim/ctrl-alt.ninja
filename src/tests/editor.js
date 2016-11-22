@@ -28,6 +28,7 @@ describe('test Editor', function() {
 
     it('cursor simple move', function() {
         var editor = new Editor(null);
+        editor.set_data_buffer(['abc', 'def', 'ghi']);
 
         editor.move_cursor(1, 1);
         expect(editor.cx).toBe(1);
@@ -36,6 +37,7 @@ describe('test Editor', function() {
 
     it('get line count', function() {
         var editor = new Editor(null);
+        editor.set_data_buffer(['abc', 'def']);
 
         expect(editor.get_line_count()).toBe(2);
 
