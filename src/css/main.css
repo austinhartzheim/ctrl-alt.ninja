@@ -173,3 +173,70 @@ dl dd {
     text-align: center;
     border-top: 2px dashed white;
 }
+
+
+/*
+ * Hexagons
+ */
+.hex {
+    color: white;
+    float: left;
+    margin-right: -26px;
+    margin-bottom: -50px;
+    font-size: 26pt;
+}
+.hex .left,
+.hex .middle,
+.hex .right {
+    transition: background 0.5s, border-color 0.5s;
+}
+.hex .left {
+    float: left;
+    width: 0;
+    border-right: 30px solid #303030;
+    border-top: 52px solid transparent;
+    border-bottom: 52px solid transparent;
+}
+.hex .middle {
+    float: left;
+    width: 60px;
+    height: 104px;
+    background: #303030;
+    text-align:center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.hex .right {
+    float: left;
+    width: 0;
+    border-left: 30px solid #303030;
+    border-top: 52px solid transparent;
+    border-bottom: 52px solid transparent;
+}
+.hex-row {
+    clear: left;
+}
+.hex-row::after {
+    /* Clearfix */
+    content:"";
+    display:block;
+    clear:both;
+    padding-top: 52px;
+}
+.hex.even {
+    margin-top: 53px;
+}
+.hex:hover{
+    color: black;
+}
+.hex:hover > .left {
+    border-right: 30px solid #1b781b;
+}
+.hex:hover > .middle {
+    background: #1b781b;
+}
+.hex:hover > .right {
+    border-left: 30px solid #1b781b;
+}
