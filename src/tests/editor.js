@@ -35,6 +35,16 @@ describe('test Editor', function() {
         expect(editor.cy).toBe(1);
     });
 
+    it('move cursor up to shorter line', function() {
+        var editor = new Editor(null);
+        editor.set_data_buffer(['abc', 'defghi']);
+        editor.set_cursor(5, 1);
+
+        editor.move_cursor(0, -1);
+        expect(editor.cx).toBe(3);
+        expect(editor.cy).toBe(0);
+    });
+
     it('get line count', function() {
         var editor = new Editor(null);
         editor.set_data_buffer(['abc', 'def']);

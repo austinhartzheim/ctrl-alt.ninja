@@ -116,12 +116,7 @@ Editor.prototype.move_cursor = function(xd, yd) {
     this.cy += yd;
     this.cy = Math.max(0, Math.min(this.get_line_count() - 1, this.cy));
 
-    /*
-    this.cx = Math.min(Math.max(0, this.cx + xd),
-                                 this.data_buffer[this.cy].length);
-    this.cy = Math.min(Math.max(0, this.cy + yd),
-                                 this.get_line_count() - 1);
-     */
+    this.cx = Math.min(this.cx, this.get_line_length(this.cy));
 };
 
 /*
