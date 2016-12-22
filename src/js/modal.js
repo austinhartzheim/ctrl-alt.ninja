@@ -30,7 +30,7 @@ function show_modal(title, desc_short, desc_long, button_text, click_handler) {
         class: 'modal-submit'
     }).appendTo(modal_inner);
 
-    var modal_button = $('<a/>', {
+    var modal_button = $('<button/>', {
         class: 'modal-button button-green',
         text: button_text
     }).click(function(event) {
@@ -46,4 +46,6 @@ function show_modal(title, desc_short, desc_long, button_text, click_handler) {
         duration: 1000,
         queue: true
     });
+
+    modal_button.focus();
 }
