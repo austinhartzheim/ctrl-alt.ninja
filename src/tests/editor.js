@@ -435,3 +435,24 @@ describe('test Editor', function() {
     });
 
 });
+
+
+describe('Diff', function() {
+    
+    it('.colorize_line with identical lines', function() {
+        var diff = new Diff();
+        var result = diff.colorize_line('hello world', 'hello world');
+
+        expect(result[0].children[0].innerText).toEqual('hello world');
+        expect(result[0].children[1].innerText).toEqual('');
+    });
+    
+    it('.colorize_line with a difference in the middle', function() {
+        var diff = new Diff();
+        var result = diff.colorize_line('hello world', 'hello wxxxx');
+
+        expect(result[0].children[0].innerText).toEqual('hello w');
+        expect(result[0].children[1].innerText).toEqual('orld');
+    });
+
+});

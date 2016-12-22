@@ -30,6 +30,7 @@ Editor.prototype.render = function() {
     this.elm.empty();
 
     var i;
+    var diff = new Diff();
     for (i = 0; i < this.data_buffer.length; i++) {
         if (this.display_cursor && this.cy == i) {
             var pre_cursor = utils.string_escape(
@@ -64,9 +65,7 @@ Editor.prototype.render = function() {
                 });
 
                 if (this.diff && this.diff_target.get_line_count() > i) {
-                    if (this.get_line(i) != this.diff_target.get_line(i)) {
-                        line.css('color', 'red');
-                    }
+                    line = diff.colorize_line(this.get_line(i), this.diff_target.get_line(i));
                 }
                 this.elm.append(line);
             }
@@ -456,4 +455,36 @@ Editor.prototype.delete = function() {
     // Delete the current character
     this.data_buffer[this.cy] = utils.string_delete_char(this.data_buffer[this.cy], this.cx);
 
+};
+
+
+
+
+/*
+ * Diff Engines
+ */
+function Diff() {
+    
+}
+
+Diff.prototype.diff = function() {
+    
+};
+
+Diff.prototype.colorize_line = function(s1, s2) {
+    var i;
+    var min_len = Math.min(s1.length, s2.length);
+
+    for (i = 0; i < min_len; i++) {
+        if (s1[i] != s2[i]) {
+            break;
+        }
+    }
+
+    var result = $('<div/>');
+    $('<span/>', {css: {color: 'green'},
+                  text: s1.slice(0, i)}).appendTo(result);
+    $('<span/>', {css: {color: 'red'},
+                  text: s1.slice(i)}).appendTo(result);
+    return result;
 };
