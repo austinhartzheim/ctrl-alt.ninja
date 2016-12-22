@@ -73,7 +73,7 @@ var level_data = [
             },
             {
                 start: ['Ninja Facts:',
-                        '1. If you see a ninja, ',
+                        '1. If you see a ninja,',
                         '2.  do not sleep. They wait',
                         '3. Only a ninja can sneak up on another'],
                 match: ['Ninja Facts:',
