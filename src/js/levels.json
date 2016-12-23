@@ -118,14 +118,14 @@
     "steps": [
       {
         "start": [
-          "Press Alt + Right Arrow to skip ahead:\n",
-          "  Sometimes ninjas need to quicly reach the midddle of a line.\n",
-          "\n",
-          "Press Alt + Backspace to delete a whole word:\n",
-          "  Sometimes you need to quickly quickly delete a redundant word.\n",
-          "\n",
-          "Pres Alt + Left Arrow to move backwards:\n",
-          "  And you need to jump backwards to.\n"
+          "Press Alt + Right Arrow to skip ahead:",
+          "  Sometimes ninjas need to quicly reach the midddle of a line.",
+          "",
+          "Press Alt + Backspace to delete a whole word:",
+          "  Sometimes you need to quickly quickly delete a redundant word.",
+          "",
+          "Pres Alt + Left Arrow to move backwards:",
+          "  And you need to jump backwards to."
         ],
         "pos": {
           "mode": 1,
@@ -133,89 +133,89 @@
           "y": 0
         },
         "match": [
-          "Press Alt + Right Arrow to skip ahead:\n",
-          "  Sometimes ninjas need to quicly reach the middle of a line.\n",
-          "\n",
-          "Press Alt + Backspace to delete a whole word:\n",
-          "  Sometimes you need to quickly quickly delete a redundant word.\n",
-          "\n",
-          "Pres Alt + Left Arrow to move backwards:\n",
-          "  And you need to jump backwards to.\n"
+          "Press Alt + Right Arrow to skip ahead:",
+          "  Sometimes ninjas need to quicly reach the middle of a line.",
+          "",
+          "Press Alt + Backspace to delete a whole word:",
+          "  Sometimes you need to quickly quickly delete a redundant word.",
+          "",
+          "Pres Alt + Left Arrow to move backwards:",
+          "  And you need to jump backwards to."
         ]
       },
       {
         "start": [
-          "Press Alt + Right Arrow to skip ahead:\n",
-          "  Sometimes ninjas need to quicly reach the middle of a line.\n",
-          "\n",
-          "Press Alt + Backspace to delete a whole word:\n",
-          "  Sometimes you need to quickly quickly delete a redundant word.\n",
-          "\n",
-          "Pres Alt + Left Arrow to move backwards:\n",
-          "  And you need to jump backwards to.\n"
+          "Press Alt + Right Arrow to skip ahead:",
+          "  Sometimes ninjas need to quicly reach the middle of a line.",
+          "",
+          "Press Alt + Backspace to delete a whole word:",
+          "  Sometimes you need to quickly quickly delete a redundant word.",
+          "",
+          "Pres Alt + Left Arrow to move backwards:",
+          "  And you need to jump backwards to."
         ],
         "pos": {
           "mode": 2
         },
         "match": [
-          "Press Alt + Right Arrow to skip ahead:\n",
-          "  Sometimes ninjas need to quicly reach the middle of a line.\n",
-          "\n",
-          "Press Alt + Backspace to delete a whole word:\n",
-          "  Sometimes you need to quickly delete a redundant word.\n",
-          "\n",
-          "Pres Alt + Left Arrow to move backwards:\n",
-          "  And you need to jump backwards to.\n"
+          "Press Alt + Right Arrow to skip ahead:",
+          "  Sometimes ninjas need to quicly reach the middle of a line.",
+          "",
+          "Press Alt + Backspace to delete a whole word:",
+          "  Sometimes you need to quickly delete a redundant word.",
+          "",
+          "Pres Alt + Left Arrow to move backwards:",
+          "  And you need to jump backwards to."
         ]
       },
       {
         "start": [
-          "Press Alt + Right Arrow to skip ahead:\n",
-          "  Sometimes ninjas need to quicly reach the middle of a line.\n",
-          "\n",
-          "Press Alt + Backspace to delete a whole word:\n",
-          "  Sometimes you need to quickly delete a redundant word.\n",
-          "\n",
-          "Pres Alt + Left Arrow to move backwards:\n",
-          "  And you need to jump backwards to.\n"
+          "Press Alt + Right Arrow to skip ahead:",
+          "  Sometimes ninjas need to quicly reach the middle of a line.",
+          "",
+          "Press Alt + Backspace to delete a whole word:",
+          "  Sometimes you need to quickly delete a redundant word.",
+          "",
+          "Pres Alt + Left Arrow to move backwards:",
+          "  And you need to jump backwards to."
         ],
         "pos": {
           "mode": 2
         },
         "match": [
-          "Press Alt + Right Arrow to skip ahead:\n",
-          "  Sometimes ninjas need to quicly reach the middle of a line.\n",
-          "\n",
-          "Press Alt + Backspace to delete a whole word:\n",
-          "  Sometimes you need to quickly delete a redundant word.\n",
-          "\n",
-          "Pres Alt + Left Arrow to move backwards:\n",
-          "  And you need to jump backwards too.\n"
+          "Press Alt + Right Arrow to skip ahead:",
+          "  Sometimes ninjas need to quicly reach the middle of a line.",
+          "",
+          "Press Alt + Backspace to delete a whole word:",
+          "  Sometimes you need to quickly delete a redundant word.",
+          "",
+          "Pres Alt + Left Arrow to move backwards:",
+          "  And you need to jump backwards too."
         ]
       },
       {
         "start": [
-          "Press Alt + Right Arrow to skip ahead:\n",
-          "  Sometimes ninjas need to quicly reach the middle of a line.\n",
-          "\n",
-          "Press Alt + Backspace to delete a whole word:\n",
-          "  Sometimes you need to quickly delete a redundant word.\n",
-          "\n",
-          "Pres Alt + Left Arrow to move backwards:\n",
-          "  And you need to jump backwards too.\n"
+          "Press Alt + Right Arrow to skip ahead:",
+          "  Sometimes ninjas need to quicly reach the middle of a line.",
+          "",
+          "Press Alt + Backspace to delete a whole word:",
+          "  Sometimes you need to quickly delete a redundant word.",
+          "",
+          "Pres Alt + Left Arrow to move backwards:",
+          "  And you need to jump backwards too."
         ],
         "pos": {
           "mode": 2
         },
         "match": [
-          "Press Alt + Right Arrow to skip ahead:\n",
-          "  Sometimes ninjas need to quicly reach the middle of a line.\n",
-          "\n",
-          "Press Alt + Backspace to delete a whole word:\n",
-          "  Sometimes you need to quickly delete a redundant word.\n",
-          "\n",
-          "Pres Alt + Left Arrow to move backwards:\n",
-          "  And sometimes you need to jump backwards too.\n"
+          "Press Alt + Right Arrow to skip ahead:",
+          "  Sometimes ninjas need to quicly reach the middle of a line.",
+          "",
+          "Press Alt + Backspace to delete a whole word:",
+          "  Sometimes you need to quickly delete a redundant word.",
+          "",
+          "Pres Alt + Left Arrow to move backwards:",
+          "  And sometimes you need to jump backwards too."
         ]
       }
     ]

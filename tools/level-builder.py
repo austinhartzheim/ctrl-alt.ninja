@@ -44,7 +44,8 @@ class LevelBuilder():
 
     def capture_level_state(self):
         with open(self.args.path, 'r') as fp:
-            self.level_states.append(fp.readlines())
+            states = [line.strip('\r\n') for line in fp.readlines()]
+            self.level_states.append(states)
 
     def output_level(self):
         steps = []
