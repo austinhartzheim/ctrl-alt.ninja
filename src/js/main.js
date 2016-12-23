@@ -41,32 +41,43 @@ Game.prototype.start_level = function(level_number) {
 
 
 $(document).ready(function() {
+    // Trigger background load of level data and insert level screens
+    //   once the level data is available.
+    $.ajax({
+        dataType: 'json',
+        url: '/js/levels.json',
+        success: function(data) {
+            level_data = data;
+            insert_all_levels();
+
+            $(".hex")
+                .hover(function() {
+                    // Total hack to update text
+                    var elm_num = parseInt(this.id.slice(3));
+                    $("#level-title").text(level_data[elm_num].title);
+                    $("#level-desc").text(level_data[elm_num].desc_short);
+                    $(".description-box").css('opacity', 1);
+                }, function() {
+                    $(".description-box").css('opacity', 0);
+                })
+
+                .click(function() {
+                    // Total hack to get hex number
+                    var elm_num = parseInt(this.id.slice(3));
+                    game.start_level(elm_num);
+                });
+        }
+    });
+
+    // Create new game object
     game = new Game();
     
     $("#modal").hide();
-    insert_all_levels();
 
     $("#begin-button").click(function() {
         $('html, body').animate({
             scrollTop: $("#main-menu").offset().top
         }, 750);
     });
-    
-    $(".hex")
-        .hover(function() {
-            // Total hack to update text
-            var elm_num = parseInt(this.id.slice(3));
-            $("#level-title").text(level_data[elm_num].title);
-            $("#level-desc").text(level_data[elm_num].desc_short);
-            $(".description-box").css('opacity', 1);
-        }, function() {
-            $(".description-box").css('opacity', 0);
-        })
-
-        .click(function() {
-            // Total hack to get hex number
-            var elm_num = parseInt(this.id.slice(3));
-            game.start_level(elm_num);
-        });
 
 });
