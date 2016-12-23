@@ -1,27 +1,41 @@
 [
   {
-    "msg_win": "<h2>Your journey has begun!</h2><p>You have passed the first of many levels on your long journey to become a <i>Keyboard Ninja</i>.</p><p>When you are ready to continue, you may click the button below.</p>",
     "desc_long": "<h2>Welcome, Ninja!</h2><p>You have started down the path of becomming a <i>Keyboard Ninja</i>.</p><p>There are two skills every Keyboard Ninja must learn: <ol><li>keyboard shortcuts</li><li>and when to use them</li></ol></p><p>Together these skills provide great power.</p><h2>What you must do</h2><ul><li>Replicate the text you see on the screen by typing it.</li><li>Apply the shortcuts we will teach you to advance on your journey.</li></ul>",
-    "title": "Introduction",
     "desc_short": "Learn to play the game.",
+    "msg_win": "<h2>Your journey has begun!</h2><p>You have passed the first of many levels on your long journey to become a <i>Keyboard Ninja</i>.</p><p>When you are ready to continue, you may click the button below.</p>",
+    "title": "Introduction",
     "steps": [
       {
+        "start": [
+          "// use your keyboard; make the text boxes match",
+          ""
+        ],
+        "pos": {
+          "x": 0,
+          "mode": 1,
+          "y": 1
+        },
         "match": [
+          "// use your keyboard; make the text boxes match",
+          "This is a typing game."
+        ]
+      },
+      {
+        "start": [
           "// use your keyboard; make the text boxes match",
           "This is a typing game."
         ],
         "pos": {
-          "x": 0,
-          "y": 1,
-          "mode": 1
+          "mode": 2
         },
-        "start": [
+        "match": [
           "// use your keyboard; make the text boxes match",
-          ""
+          "This is a typing game.",
+          "New lines will appear with more text to type."
         ]
       },
       {
-        "match": [
+        "start": [
           "// use your keyboard; make the text boxes match",
           "This is a typing game.",
           "New lines will appear with more text to type."
@@ -29,13 +43,15 @@
         "pos": {
           "mode": 2
         },
-        "start": [
+        "match": [
           "// use your keyboard; make the text boxes match",
-          "This is a typing game."
+          "This is a typing game for ninjas.",
+          "New lines will appear with more text to type.",
+          "And sometimes you will have to make edits too."
         ]
       },
       {
-        "match": [
+        "start": [
           "// use your keyboard; make the text boxes match",
           "This is a typing game for ninjas.",
           "New lines will appear with more text to type.",
@@ -44,53 +60,37 @@
         "pos": {
           "mode": 2
         },
-        "start": [
-          "// use your keyboard; make the text boxes match",
-          "This is a typing game.",
-          "New lines will appear with more text to type."
-        ]
-      },
-      {
         "match": [
           "// use your keyboard; make the text boxes match",
           "This is a typing game for ninjas.",
           "New lines will appear with more text to type.",
           "And sometimes you will have to make edits too.",
           "Now I have the hang of this."
-        ],
-        "pos": {
-          "mode": 2
-        },
-        "start": [
-          "// use your keyboard; make the text boxes match",
-          "This is a typing game for ninjas.",
-          "New lines will appear with more text to type.",
-          "And sometimes you will have to make edits too."
         ]
       }
     ]
   },
   {
-    "msg_win": "<h2>You did it!</h2><p>Can you feel the ninja power starting to take root in your fingers?</p>",
     "desc_long": "<h2>Let's start with the basics</h2><p>The first skill every ninja-in-training learns is how to quickly move the cursor to the start and end of a line.With one keypress you can easily dazzle your foes and appear to teleport through them before landing your final blow.</p><p>(Of course, by the time you finish your training, they won't be able to see you at all!)</p><h2>New shortcuts!</h2><dl><dt>Ctrl+a</dt><dd>Skip to the start of a link.</dd><dt>Ctrl+e</dt><dd>Skip to the end of a line.</dd><dt>Alt+&lt;</dt><dd>Skip to the start of the file.</dd><dt>Alt+&gt;</dt><dd>Skip to the end of the file.</dd></dl>",
-    "title": "Teleporting Home",
     "desc_short": "They won't see you coming.",
+    "msg_win": "<h2>You did it!</h2><p>Can you feel the ninja power starting to take root in your fingers?</p>",
+    "title": "Teleporting Home",
     "steps": [
       {
-        "match": [
+        "start": [
           "If only there was an easier way to reach the end... Like pressing Ctrl+e!"
         ],
         "pos": {
           "x": 0,
-          "y": 0,
-          "mode": 1
+          "mode": 1,
+          "y": 0
         },
-        "start": [
+        "match": [
           "If only there was an easier way to reach the end... Like pressing Ctrl+e!"
         ]
       },
       {
-        "match": [
+        "start": [
           "Ninja Facts:",
           "1. If you see a ninja, they are not a ninja.",
           "2. Ninjas do not sleep. They wait...",
@@ -98,10 +98,10 @@
         ],
         "pos": {
           "x": 0,
-          "y": 0,
-          "mode": 1
+          "mode": 1,
+          "y": 0
         },
-        "start": [
+        "match": [
           "Ninja Facts:",
           "1. If you see a ninja, they are not a ninja.",
           "2. Ninjas do not sleep. They wait...",
@@ -111,75 +111,122 @@
     ]
   },
   {
-    "msg_win": "<h2>You did it!</h2><p>The bugs have been fixed. Now it's time to find the person responsible...</p>",
     "desc_long": "<h2>Know your own strength</h2><p>Teleporting is fun, but sometimes a quick punch is all it takes. Jump shorter distances with these new shortcuts.</p><p>Let the world know your strength!</p><h2>New Shortcuts!</h2><dl><dt>Alt+left arrow</dt><dd>Skip back one word.</dd><dt>Alt+right arrow</dt><dd>Skip forward on word</dd><dt>Alt+Backspace</dt><dd>Delete one word, backwards.</dd></dl>",
-    "title": "Fixing Bugs",
-    "desc_short": "Ninjas don't fix bugs; they fix you.",
+    "desc_short": "Ninjas can jump over anything.",
+    "msg_win": "<h2>You did it!</h2><p>You're really catching on With a little more practice, you will be unstoppable.",
+    "title": "Jump Around",
     "steps": [
       {
-        "match": [
-          "def get_sensor_data():",
-          "    // TODO: fix insecure eval()",
-          "    sensor_data = json.loads(requests.get(URL).text)",
-          "    ",
-          "    if sensor_data['temperature'] < 68:",
-          "        enable_heater();"
+        "start": [
+          "Press Alt + Right Arrow to skip ahead:\n",
+          "  Sometimes ninjas need to quicly reach the midddle of a line.\n",
+          "\n",
+          "Press Alt + Backspace to delete a whole word:\n",
+          "  Sometimes you need to quickly quickly delete a redundant word.\n",
+          "\n",
+          "Pres Alt + Left Arrow to move backwards:\n",
+          "  And you need to jump backwards to.\n"
         ],
         "pos": {
+          "mode": 1,
           "x": 0,
-          "y": 0,
-          "mode": 1
+          "y": 0
         },
-        "start": [
-          "def get_sensor_data():",
-          "    // TODO: fix insecure eval()",
-          "    sensor_data = json.loads(requests.get(URL).text)",
-          "    ",
-          "    if sensor_data['temperature'] < 68:",
-          "        enable_heater();"
+        "match": [
+          "Press Alt + Right Arrow to skip ahead:\n",
+          "  Sometimes ninjas need to quicly reach the middle of a line.\n",
+          "\n",
+          "Press Alt + Backspace to delete a whole word:\n",
+          "  Sometimes you need to quickly quickly delete a redundant word.\n",
+          "\n",
+          "Pres Alt + Left Arrow to move backwards:\n",
+          "  And you need to jump backwards to.\n"
         ]
       },
       {
-        "match": [
-          "def get_sensor_data():",
-          "    sensor_data = json.loads(requests.get(URL).text)",
-          "    ",
-          "    if sensor_data['temperature'] < 68:",
-          "        enable_heater();"
+        "start": [
+          "Press Alt + Right Arrow to skip ahead:\n",
+          "  Sometimes ninjas need to quicly reach the middle of a line.\n",
+          "\n",
+          "Press Alt + Backspace to delete a whole word:\n",
+          "  Sometimes you need to quickly quickly delete a redundant word.\n",
+          "\n",
+          "Pres Alt + Left Arrow to move backwards:\n",
+          "  And you need to jump backwards to.\n"
         ],
         "pos": {
           "mode": 2
         },
+        "match": [
+          "Press Alt + Right Arrow to skip ahead:\n",
+          "  Sometimes ninjas need to quicly reach the middle of a line.\n",
+          "\n",
+          "Press Alt + Backspace to delete a whole word:\n",
+          "  Sometimes you need to quickly delete a redundant word.\n",
+          "\n",
+          "Pres Alt + Left Arrow to move backwards:\n",
+          "  And you need to jump backwards to.\n"
+        ]
+      },
+      {
         "start": [
-          "def get_sensor_data():",
-          "    sensor_data = json.loads(requests.get(URL).text)",
-          "    ",
-          "    if sensor_data['temperature'] < 68:",
-          "        enable_heater();"
+          "Press Alt + Right Arrow to skip ahead:\n",
+          "  Sometimes ninjas need to quicly reach the middle of a line.\n",
+          "\n",
+          "Press Alt + Backspace to delete a whole word:\n",
+          "  Sometimes you need to quickly delete a redundant word.\n",
+          "\n",
+          "Pres Alt + Left Arrow to move backwards:\n",
+          "  And you need to jump backwards to.\n"
+        ],
+        "pos": {
+          "mode": 2
+        },
+        "match": [
+          "Press Alt + Right Arrow to skip ahead:\n",
+          "  Sometimes ninjas need to quicly reach the middle of a line.\n",
+          "\n",
+          "Press Alt + Backspace to delete a whole word:\n",
+          "  Sometimes you need to quickly delete a redundant word.\n",
+          "\n",
+          "Pres Alt + Left Arrow to move backwards:\n",
+          "  And you need to jump backwards too.\n"
+        ]
+      },
+      {
+        "start": [
+          "Press Alt + Right Arrow to skip ahead:\n",
+          "  Sometimes ninjas need to quicly reach the middle of a line.\n",
+          "\n",
+          "Press Alt + Backspace to delete a whole word:\n",
+          "  Sometimes you need to quickly delete a redundant word.\n",
+          "\n",
+          "Pres Alt + Left Arrow to move backwards:\n",
+          "  And you need to jump backwards too.\n"
+        ],
+        "pos": {
+          "mode": 2
+        },
+        "match": [
+          "Press Alt + Right Arrow to skip ahead:\n",
+          "  Sometimes ninjas need to quicly reach the middle of a line.\n",
+          "\n",
+          "Press Alt + Backspace to delete a whole word:\n",
+          "  Sometimes you need to quickly delete a redundant word.\n",
+          "\n",
+          "Pres Alt + Left Arrow to move backwards:\n",
+          "  And sometimes you need to jump backwards too.\n"
         ]
       }
     ]
   },
   {
-    "msg_win": "<h2>How did that feel?</h2><p>Your boss is lucky you let him off easy. You're the boss now!</p>",
     "desc_long": "<h2>Independence is key</h2><p>True ninjas cannot be beholden to anyone. That is why this next lesson will be about showing people who is boss.</p>",
-    "title": "Revise/Edit",
     "desc_short": "Ninjas don't need jobs.",
+    "msg_win": "<h2>How did that feel?</h2><p>Your boss is lucky you let him off easy. You're the boss now!</p>",
+    "title": "Revise/Edit",
     "steps": [
       {
-        "match": [
-          "Email Draft:",
-          "Dear Sucker,",
-          "I'm out of here!",
-          "I gotta do me now.",
-          "Could you write me a letter of rec??",
-          "Peace"
-        ],
-        "pos": {
-          "x": 0,
-          "y": 0,
-          "mode": 1
-        },
         "start": [
           "Email Draft:",
           "Dear Employer,",
@@ -188,27 +235,30 @@
           "I hope you will understand.",
           "Sincerely,",
           "Ctrl-Alt Ninja"
+        ],
+        "pos": {
+          "x": 0,
+          "mode": 1,
+          "y": 0
+        },
+        "match": [
+          "Email Draft:",
+          "Dear Sucker,",
+          "I'm out of here!",
+          "I gotta do me now.",
+          "Could you write me a letter of rec??",
+          "Peace"
         ]
       }
     ]
   },
   {
-    "msg_win": "<h2>Congrats Ninja Coder!</h2><p>You \"kill\"-ed all the mistakes! Just like a real ninja</p>",
     "desc_long": "Ctrl-k to kill line",
-    "title": "Haxx0r Ninja",
     "desc_short": "Ninjas don't make n00bie mistakes.",
+    "msg_win": "<h2>Congrats Ninja Coder!</h2><p>You \"kill\"-ed all the mistakes! Just like a real ninja</p>",
+    "title": "Haxx0r Ninja",
     "steps": [
       {
-        "match": [
-          "if (var)",
-          "  count ++;",
-          "input = readInput();"
-        ],
-        "pos": {
-          "x": 0,
-          "y": 0,
-          "mode": 1
-        },
         "start": [
           "if (var && 1)",
           "  count ++;",
@@ -216,25 +266,19 @@
           "else",
           "  count --;",
           "  input = readInput();"
-        ]
-      },
-      {
-        "match": [
-          "while ( WildHacks ) {",
-          "  keyboard.add(\"crumbs\");",
-          "  for each (free_item in Bathroom){",
-          "    backStack.push(free_item);",
-          "  }",
-          "  if (sleepy)",
-          "    redbull();",
-          "  Building.temperature --;",
-          "}"
         ],
         "pos": {
           "x": 0,
-          "y": 0,
-          "mode": 1
+          "mode": 1,
+          "y": 0
         },
+        "match": [
+          "if (var)",
+          "  count ++;",
+          "input = readInput();"
+        ]
+      },
+      {
         "start": [
           "while ( WildHacks ) {",
           "  keyboard.add(\"crumbs\");",
@@ -247,6 +291,22 @@
           "  else",
           "    code();",
           "  eatJunkFood(MAX_LIMIT);",
+          "}"
+        ],
+        "pos": {
+          "x": 0,
+          "mode": 1,
+          "y": 0
+        },
+        "match": [
+          "while ( WildHacks ) {",
+          "  keyboard.add(\"crumbs\");",
+          "  for each (free_item in Bathroom){",
+          "    backStack.push(free_item);",
+          "  }",
+          "  if (sleepy)",
+          "    redbull();",
+          "  Building.temperature --;",
           "}"
         ]
       }
